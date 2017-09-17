@@ -1,53 +1,65 @@
 #=======================================================
-# Aliases
+# Aliases file
 #=======================================================
-alias showaliases="cat $HOME/.bash_aliases"
+alias showaliases="less $HOME/.bash_aliases"
 alias editaliases="vim $HOME/.bash_aliases"
 
-#show ports
-alias ports="netstat -tulanp"
-
-# disk usage current directory
-alias dirusage="du -ch | grep total"
-
-# total disk usage
-alias totalusage="df -hl --total | grep total"
-
-
-alias mktarbz2="tar -jcvf"
-alias mktargz="tar -zcvf"
-# Find and run bing search script from history
-#alias bingsearch="history | grep -e '^.[0-9]*...\/Documents.*\/search\/search.py$' -m 1"
-
-alias diskspace='df -P -kHl'
-alias cl='clear'
-alias v='vim'
-alias histg='history | grep'
-alias ex='exit'
-alias xopen='xdg-open'
-alias glog='git log --oneline'
-alias gstat='git status'
-alias patchadd='git add --patch'
-alias ..='cd ..'
+#=======================================================
+# Services/ System info
+#=======================================================
 alias start='sudo systemctl start'
 alias stop='sudo systemctl stop'
 alias status='sudo systemctl status'
-alias sudoprev='sudo $(history -p !!)'
-#==========================================================
-# Functions
-#=========================================================
+alias restart='sudo systemctl restart'
+alias reload='sudo systemctl reload'
+alias reload-or-restart='sudo systemctl reload-or-restart'
+alias boot-enable='sudo systemctl enable'
+alias boot-disable='sudo systemctl disable'
+alias is-enabled='sudo sytemctl is-enabled'
+alais is-active='sudo systemctl is-active'
 
-# mkdir then cd into it
+alias diskspace='df -P -kHl'
+alias ports="netstat -tulanp"
+alias dirusage="du -ch | grep total"
+alias totalusage="df -hl --total | grep total"
+
+#=======================================================
+# Movement/ Creation
+#=======================================================
+cs() {
+  cd "$@" && ls
+}
+
 mkcd() {
   mkdir $1
   cd $1
 }
 
-# performs cd and ls together
-cs() {
-  cd "$@" && ls
-}
+alias ..='cd ..'
+alias mktarbz2="tar -jcvf"
+alias mktargz="tar -zcvf"
 
+extract() {
+  echo 'This would be nice to have'
+}
+#=======================================================
+# History/ Command line 
+#=======================================================
+alias cl='clear'
+alias histg='history | grep'
+alias sudoprev='sudo $(history -p !!)'
+
+#==========================================================
+# Git
+#==========================================================
+alias glog='git log --oneline'
+alias gstat='git status'
+alias gpatchadd='git add --patch'
+
+
+#==========================================================
+# No Obvious Group (Yet)
+#==========================================================
 buildserve() {
   bundle exec jekyll build && bundle exec jekyll serve
 }
@@ -55,5 +67,6 @@ buildserve() {
 dockip() {
   docker inspect --format '{{ .NetworkSettings.IPAddress }}' "$@"
 }
-# find the common extract function online, super useful
+
+alias xopen='xdg-open'
 
