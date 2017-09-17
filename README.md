@@ -18,4 +18,4 @@ Files to add:
 - personal scripts section
 - bash_prompt
 - boilerplate functions for any languages we use, not just bash  
-
+- bash history settings  
