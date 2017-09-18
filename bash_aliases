@@ -22,6 +22,7 @@ alias diskspace='df -P -kHl'
 alias ports="netstat -tulanp"
 alias dirusage="du -ch | grep total"
 alias totalusage="df -hl --total | grep total"
+alias showpermssions='find . -maxdepth 1 -printf "%m:%f\n"'
 
 #=======================================================
 # Movement/ Creation
@@ -55,6 +56,7 @@ alias sudoprev='sudo $(history -p !!)'
 alias glog='git log --oneline'
 alias gstat='git status'
 alias gpatchadd='git add --patch'
+alias gdiff-staged='git diff --cached'
 
 
 #==========================================================
@@ -68,5 +70,26 @@ dockip() {
   docker inspect --format '{{ .NetworkSettings.IPAddress }}' "$@"
 }
 
+# ls, with chmod-like permissions and more.
+# @param $1 The directory to ls
+function lsp {
+  LLS_PATH=$1
+  ls -AHl $LLS_PATH | awk "{k=0;for(i=0;i<=8;i++)k+=((substr(\$1,i+2,1)~/[rwx]/) \
+                                *2^(8-i));if(k)printf(\"%0o \",k);print}"
+}
 alias xopen='xdg-open'
+#TODO
+# which vs whereis, which is better but needs easier to remember name
+# https://github.com/paulirish/dotfiles/blob/master/.aliases
+# When sudo can't find command
+alias lostsudo='sudo -E env "PATH=$PATH"#'
+makepopup() {
+  if [ "$1" == "-h" ]; then 
+	echo "makepopup [ 'the message'] [duration (seconds)]"
+  else
+    /usr/bin/kdialog --title 'Your message' --passivepopup "$1" "$2"
+  fi
+}
+alias viewtar='echo "**Use less if you need searching **" && tar -tvf'
+alias cminicom='minicom -c on'
 
