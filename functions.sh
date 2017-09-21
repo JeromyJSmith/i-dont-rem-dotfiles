@@ -45,3 +45,4 @@ in_list() {
 }
 
 
+# Possible additions https://github.com/adamatan/bash-boilerplate/blob/master/boilerplate.sh

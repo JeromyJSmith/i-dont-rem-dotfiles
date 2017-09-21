@@ -3,6 +3,7 @@
 #=======================================================
 alias showaliases="less $HOME/.bash_aliases"
 alias editaliases="vim $HOME/.bash_aliases"
+alias reload_profile="source ~/.bashrc"
 
 #=======================================================
 # Services/ System info
@@ -19,6 +20,7 @@ alias is-enabled='sudo sytemctl is-enabled'
 alais is-active='sudo systemctl is-active'
 
 alias diskspace='df -P -kHl'
+alias rootdiskspace='sudo du -hsx /* | sort -rh | head -n 40'
 alias ports="netstat -tulanp"
 alias dirusage="du -ch | grep total"
 alias totalusage="df -hl --total | grep total"

@@ -1,0 +1,13 @@
+Host pihole
+	HostName raspberrypi
+	User kevin
+	
+Host gimmeDeals
+	HostName amazonstuff
+	User ubuntu
+	IdentityFile ~/work/SMSApp.pem
+
+Host sms2sheets
+	HostName amamzonstuff
+	User ubuntu
+	IdentityFile ~/work/SMSApp.pem
