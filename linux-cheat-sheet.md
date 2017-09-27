@@ -4,10 +4,9 @@
 * [Useful Commands](#useful-commands)
 * [IO Redirection](#io-redirection)
 * [Special Variables](#special-variables)
-* [Shortcuts](#shorcuts)
+* [Shortcuts](#shortcuts)
 
-# As of now this will hold everything, this should eventually get split  
- by language and tool
+- As of now this will hold everything, this should eventually get split by language and tool
 
 - Duck Duck Go has good bash cheat sheet to go over if you just search 'bash cheat sheet'
 https://duckduckgo.com/?q=bash+cheat+sheet&t=canonical&ia=cheatsheet&iax=1
@@ -16,6 +15,7 @@ https://duckduckgo.com/?q=bash+cheat+sheet&t=canonical&ia=cheatsheet&iax=1
 ### Useful Commands
 * find
 * fuser: checks what processes using that file
+
 
 ### Test Operations
 * -f: regualr file
