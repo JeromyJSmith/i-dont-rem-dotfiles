@@ -6,7 +6,7 @@
 mock=0
 dir=~/dotfiles
 olddir=~/old_dotfiles
-ignorefiles="README.md install_script.sh my_scripts boilerplate"
+ignorefiles="README.md install_script.sh my_scripts boilerplate linux-cheat-sheet.md"
 
 if [ "$#" -ne 0 ]; then
   echo "Running in test mode (only lists output)"
