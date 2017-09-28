@@ -45,6 +45,11 @@ alias mktargz="tar -zcvf"
 extract() {
   echo 'This would be nice to have'
 }
+
+# Because I'm a dangus
+append() {
+  cat $1 >> $2
+}
 #=======================================================
 # History/ Command line 
 #=======================================================
