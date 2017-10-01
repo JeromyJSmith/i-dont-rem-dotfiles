@@ -1,0 +1,7 @@
+[user]
+	email = kpquinn2@wisc.edu
+	name = Kevin Quinn
+[color]
+	ui = true
+[core]
+	editor = vim
