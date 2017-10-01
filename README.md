@@ -13,7 +13,12 @@ Files to add:
 - gitconfig  
 - gitignore  
 - gitattributes  
-- personal scripts section
-- bash_prompt
+- need more 'find' aliases/functions
+- <!> personal scripts section, pull in and delete that repo
+- bash_prompt  
 - boilerplate functions for any languages we use, not just bash  
 - bash history settings  
+- useful c macros  
+- start adding useful functions for languages  
+- browser settings? let Ansible handle?
+
