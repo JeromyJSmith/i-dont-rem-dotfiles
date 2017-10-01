@@ -5,3 +5,13 @@
 	ui = true
 [core]
 	editor = vim
+[alias]
+	df = diff
+	di = diff
+
+	# short form, with colors and branch/tag annotations
+	ls = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate
+	
+	# no color version
+	lnc = log --pretty=format:"%h\\ %s\\ [%cn]"
+

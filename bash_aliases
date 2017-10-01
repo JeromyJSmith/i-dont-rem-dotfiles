@@ -17,7 +17,7 @@ alias reload-or-restart='sudo systemctl reload-or-restart'
 alias boot-enable='sudo systemctl enable'
 alias boot-disable='sudo systemctl disable'
 alias is-enabled='sudo sytemctl is-enabled'
-alais is-active='sudo systemctl is-active'
+alias is-active='sudo systemctl is-active'
 
 alias diskspace='df -P -kHl'
 alias rootdiskspace='sudo du -hsx /* | sort -rh | head -n 40'
@@ -53,12 +53,20 @@ alias histg='history | grep'
 alias sudoprev='sudo $(history -p !!)'
 
 #==========================================================
+# Virtualenv
+#==========================================================
+startenv() {
+  . $1/bin/activate
+}
+
+#==========================================================
 # Git
 #==========================================================
 alias glog='git log --oneline'
 alias gstat='git status'
 alias gpatchadd='git add --patch'
 alias gdiff-staged='git diff --cached'
+alias gdif='git diff'
 
 
 #==========================================================
@@ -94,4 +102,4 @@ makepopup() {
 }
 alias viewtar='echo "**Use less if you need searching **" && tar -tvf'
 alias cminicom='minicom -c on'
-
+alias v='vim'

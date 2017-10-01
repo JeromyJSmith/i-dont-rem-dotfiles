@@ -1,3 +1,5 @@
+# Bash sources this first, but if it can't find it will source .profile
+
 ###### defaults from Kubuntu? ##########
 [[ -s "$HOME/.profile" ]] && source "$HOME/.profile" # Load the default .profile
 
