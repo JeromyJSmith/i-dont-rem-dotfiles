@@ -39,8 +39,7 @@ if [ "$mock" -eq "1" ]; then
   echo "...done"
   exit 0
 fi
-echo "issue"
-exit 1
+
 echo "Moving any existing files in ~ to $olddir.."
 for entry in $dir/*; do
   fname=$(basename $entry)
