@@ -108,3 +108,4 @@ makepopup() {
 alias viewtar='echo "**Use less if you need searching **" && tar -tvf'
 alias cminicom='minicom -c on'
 alias v='vim'
+alias cminiusb='minicom -c on -D /dev/ttyUSB0'

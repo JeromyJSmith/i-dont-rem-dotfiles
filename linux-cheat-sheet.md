@@ -1,5 +1,9 @@
 # Super Awesome Cheat Sheet
 
+# Things to add
+- brace expansion
+
+
 ### Index
 * [Useful Commands](#useful-commands)
 * [IO Redirection](#io-redirection)
