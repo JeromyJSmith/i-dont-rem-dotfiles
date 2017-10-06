@@ -39,6 +39,9 @@ mkcd() {
 }
 
 alias ..='cd ..'
+alias ...='cd ../../'
+alias .3='cd ../../../'
+alias .4='cd ../../../../'
 alias mktarbz2="tar -jcvf"
 alias mktargz="tar -zcvf"
 
