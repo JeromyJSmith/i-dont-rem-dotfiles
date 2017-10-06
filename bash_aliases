@@ -72,7 +72,7 @@ alias gstat='git status'
 alias gpatchadd='git add --patch'
 alias gdiff-staged='git diff --cached'
 alias gdif='git diff'
-
+alias gcpk='git cherry-pick'
 
 #==========================================================
 # No Obvious Group (Yet)
