@@ -22,3 +22,13 @@ Files to add:
 - start adding useful functions for languages  
 - browser settings? let Ansible handle?
 
+example PS1 from work nfs: red name, grey end piece, then white and greys for actual text
+XCalibur4531 ~ # echo $PS1
+\[\033[01;31m\]\h\[\033[01;34m\] \W \$\[\033[00m\]
+
+
+https://vimawesome.com/
+https://www.cyberciti.biz/tips/bash-aliases-mac-centos-linux-unix.html
+https://www.linkedin.com/pulse/20140606085733-79939846-my-bashrc-and-vimrc-files
+https://github.com/amix/vimrc
+
