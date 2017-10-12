@@ -59,7 +59,7 @@ append() {
 alias cl='clear'
 alias histg='history | grep'
 alias sudoprev='sudo $(history -p !!)'
-
+alias ld='ls -ld .??*'
 #==========================================================
 # Virtualenv
 #==========================================================
