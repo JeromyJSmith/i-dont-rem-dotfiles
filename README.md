@@ -23,7 +23,7 @@ Files to add:
 - browser settings? let Ansible handle?
 
 example PS1 from work nfs: red name, grey end piece, then white and greys for actual text
-XCalibur4531 ~ # echo $PS1
+Board1234 ~ # echo $PS1
 \[\033[01;31m\]\h\[\033[01;34m\] \W \$\[\033[00m\]
 
 
