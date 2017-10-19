@@ -1,0 +1,9 @@
+// script to wrap docker development usage
+
+// plan to have most development setups run within docker to
+keep host machine clean, tool will be useful:
+
+// idea: 
+    pydock java run 
+    pydock node buiid
+    pydock python -f requirements.txt script.py
