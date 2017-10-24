@@ -60,6 +60,9 @@ alias cl='clear'
 alias histg='history | grep'
 alias sudoprev='sudo $(history -p !!)'
 alias ld='ls -ld .??*'
+nullify () {
+    "$@" >& /dev/null
+}
 #==========================================================
 # Virtualenv
 #==========================================================
@@ -76,7 +79,7 @@ alias gpatchadd='git add --patch'
 alias gdiff-staged='git diff --cached'
 alias gdif='git diff'
 alias gcpk='git cherry-pick'
-
+alias scommit='git commit -s'
 #==========================================================
 # No Obvious Group (Yet)
 #==========================================================
