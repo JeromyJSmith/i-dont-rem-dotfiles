@@ -39,3 +39,6 @@ https://www.reddit.com/r/linux/comments/1t8i0z/programmers_in_rlinux_what_color_
 http://leocharre.com/articles/setting-ls_colors-colors-of-directory-listings-in-bash-terminal/
 Display executables with the asterik when listed with 'ls'
 https://www.linux.com/learn/bash-tips-linux-sysadmins
+
+https://stackoverflow.com/questions/9532499/check-whether-a-path-is-valid-in-python-without-creating-a-file-at-the-paths-ta
+

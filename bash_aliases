@@ -2,8 +2,8 @@
 # Aliases file
 #=======================================================
 alias showaliases="less $HOME/.bash_aliases"
-alias editaliases="vim $HOME/.bash_aliases"
-alias reload_profile="source ~/.bashrc"
+alias editaliases="vim $HOME/.bash_aliases && source ~/.bashrc"
+alias reloadprofile="source ~/.bashrc"
 
 #=======================================================
 # Services/ System info
@@ -42,8 +42,8 @@ alias ..='cd ..'
 alias ...='cd ../../'
 alias .3='cd ../../../'
 alias .4='cd ../../../../'
-alias mktarbz2="tar -jcvf"
-alias mktargz="tar -zcvf"
+alias mktarbz2="tar --owner=root --group=root -jcvf"
+alias mktargz="tar --owner=root --group=root -zcvf"
 
 extract() {
   echo 'This would be nice to have'
@@ -60,6 +60,9 @@ alias cl='clear'
 alias histg='history | grep'
 alias sudoprev='sudo $(history -p !!)'
 alias ld='ls -ld .??*'
+alias llh='ls -lh'
+alias lls='ls -ls'
+alias lsh='ls -sh'
 nullify () {
     "$@" >& /dev/null
 }
@@ -80,6 +83,7 @@ alias gdiff-staged='git diff --cached'
 alias gdif='git diff'
 alias gcpk='git cherry-pick'
 alias scommit='git commit -s'
+alias gcomm='git commit'
 #==========================================================
 # No Obvious Group (Yet)
 #==========================================================

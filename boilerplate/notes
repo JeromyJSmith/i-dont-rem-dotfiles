@@ -5,4 +5,4 @@ https://pypi.python.org/pypi/termcolor
 
 https://pypi.python.org/pypi/colorama
 
-
+color output happens if you enable correct INTERACTIVE var in log4bash
