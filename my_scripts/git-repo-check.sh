@@ -7,15 +7,29 @@
 # https://github.com/MaxWinterstein/check_git_pullstatus/blob/master/check_git_pullstatus.sh
 #
 
+# To fix recurring ssh passphrase questions, use https://askubuntu.com/questions/362280/enter-ssh-passphrase-once
+# or similar, not an issue with the script
+
 . /home/kquinn/dotfiles/boilerplate/bash_functions.sh
 . /home/kquinn/dotfiles/log4bash/log4bash.sh
+
+echo_blue() {
+	echo -en "\033[0;36m"
+	echo "$1"
+	echo -en "\033[0m"
+}
 
 check_git_repo() {
 	clean=0
 	repo=$(basename $1)
-	echo -en "\033[0;31m"
-	echo "Checking $repo..."
-	echo -en "\033[0m"
+
+	echo_blue "** Checking $repo..."
+
+	inside_git_repo="$(git rev-parse --is-inside-work-tree 2>/dev/null)"
+	if [ ! $inside_git_repo ]; then
+		echo_blue "----> Not a Git repository"
+		return 1
+	fi
 
 	# Appending $? assigns the variable to return value, $(command)$?
 	#### Only works on already tracked files, not untracked ones
@@ -81,19 +95,20 @@ git_summary() {
 		root_dir="$(git rev-parse --show-toplevel)"
 
 		if [ "$dir" != "$root_dir" ]; then
-			echo "Running from $dir for git root directory $root_dir..."
+			echo_blue "Running from $dir for git root directory $root_dir..."
 		else
-			echo "Running on $dir..."
+			echo_blue "Running on $dir..."
 		fi
 		check_git_repo "$root_dir"
 	else
 	# Recursively check directories in this dir
-		echo "Running on directories under $dir..."
-# 		for f in $dir/*; do
-# 			# Only run on directories
-# 			[ -d "${f}" ] || continue
-# 			check_git_repo "$f"
-# 		done
+		echo_blue "Running on directories under $dir..."
+		for f in $dir/*; do
+			# Only run on directories
+			[ -d "${f}" ] || continue
+			cd $f
+			check_git_repo "$f"
+		done
 	fi
 }
 
