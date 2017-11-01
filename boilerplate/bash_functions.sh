@@ -1,4 +1,4 @@
-# Include this in other scripts by either exporting every function (dumb), 
+# Include this in other scripts by either exporting every function (dumb),
 # ORRR source it ( at top of new script '. /path/to/functions')
 
 
@@ -16,11 +16,11 @@ debugLog() {
     else
       echo "$1"
     fi
-  fi   
+  fi
 }
 
 
-#usage: 
+#usage:
 #setValue 'Enter something' 'defaultValue'
 #VAR=$NEW_VALUE
 setValue() {
@@ -44,5 +44,49 @@ in_list() {
   return $result
 }
 
+# usage:
+# check_num_args "$#" "eq" "5"
+# depends: is_int
+check_num_args() {
+    num_args=$1
+    conditional=$2
+    num_desired=$3
+
+    tests=( eq ne le ge lt gt )
+    if is_int $num_desired && is_int $num_args; then
+        # check args
+        # case $conditional in
+        # "eq")
+        #     ;;
+        # esac
+        if in_list "$tests" "$conditional"; then
+            echo "$num_args -$conditional $num_desired"
+            if [ $num_args -$conditional $num_desired ]; then
+                return 0
+            else
+                return 1
+            fi
+        else
+            echo "check_num_args: Invalid conditional"
+            exit 1
+        fi
+    else
+        echo "check_num_args: Not an integer"
+        exit 1
+    fi
+}
+
+
+# usage:
+#
+# returns 1 if int and 0 otherwise
+is_int() {
+  #return $(test "$@" -eq "$@" > /dev/null 2>&1);
+    if [[ $1 =~ ^-?[0-9]+$ ]]; then
+        return 0
+    else
+        return 1
+    fi
+}
 
 # Possible additions https://github.com/adamatan/bash-boilerplate/blob/master/boilerplate.sh
