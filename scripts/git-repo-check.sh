@@ -54,6 +54,7 @@ check_git_repo() {
 
 	#check pull
 # TODO: Add option to handle branches aside from master and remotes that aren't origin
+	no_origin=1
 	git fetch origin &> /dev/null || no_origin=0
 
 	if [ $no_origin -ne 0 ]; then
