@@ -54,10 +54,15 @@ check_git_repo() {
 
 	#check pull
 # TODO: Add option to handle branches aside from master and remotes that aren't origin
-	git fetch origin
-	if [ "$(git log HEAD..origin/master --oneline)" != "" ]; then
-		log_warning "HEAD is behind origin/master, need to pull"
-		clean=1
+	git fetch origin &> /dev/null || no_origin=0
+
+	if [ $no_origin -ne 0 ]; then
+		if [ "$(git log HEAD..origin/master --oneline)" != "" ]; then
+			log_warning "HEAD is behind origin/master, need to pull"
+			clean=1
+		fi
+	else
+		log_error "Origin branch doesn't exist, can't check pull"
 	fi
 
 	#check push
