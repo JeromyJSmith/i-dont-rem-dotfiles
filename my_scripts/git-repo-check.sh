@@ -34,7 +34,7 @@ check_git_repo() {
 	# Appending $? assigns the variable to return value, $(command)$?
 	#### Only works on already tracked files, not untracked ones
 	all_staged=$(git diff-files --quiet --ignore-submodules --)$?
-	all_tracked=1
+	all_tracked=$(git status | grep 'Untracked' -c)
 	all_commited=$(git diff-index --cached --quiet HEAD --ignore-submodules --)$?
 	
 	if [ $all_staged -ne 0 ]; then
