@@ -36,7 +36,7 @@ check_git_repo() {
 	all_staged=$(git diff-files --quiet --ignore-submodules --)$?
 	all_tracked=$(git status | grep 'Untracked' -c)
 	all_commited=$(git diff-index --cached --quiet HEAD --ignore-submodules --)$?
-	
+
 	if [ $all_staged -ne 0 ]; then
 		log_warning "Need to handle unstaged files"
 		clean=1
@@ -52,18 +52,20 @@ check_git_repo() {
 		clean=1
 	fi
 
-	#check pull
-# TODO: Add option to handle branches aside from master and remotes that aren't origin
-	no_origin=1
-	git fetch origin &> /dev/null || no_origin=0
-
-	if [ $no_origin -ne 0 ]; then
-		if [ "$(git log HEAD..origin/master --oneline)" != "" ]; then
-			log_warning "HEAD is behind origin/master, need to pull"
-			clean=1
-		fi
+	# have to convert string output into a list
+	remotes=($(git remote))
+	if [ ! -z "$remotes" ]; then
+		for remote in "${remotes[@]}"; do
+			echo_blue "----> Checking remote ${remote}/master..."
+			git fetch $remote &> /dev/null
+			output=$(git log --oneline -- HEAD.."$remote"/master)
+			if [ "$output" != "" ]; then
+				log_warning "HEAD is behind "$remote"/master, need to pull"
+				clean=1
+			fi
+		done
 	else
-		log_error "Origin branch doesn't exist, can't check pull"
+		log_error "Repository has no remotes"
 	fi
 
 	#check push
@@ -84,13 +86,13 @@ git_summary() {
 	# 	log_error "Need a directory argument..."
 	# 	exit 1
 	# fi
-	
+
 	dir="$(readlink -fn "$1")"
 	if [ !  -d "$dir" ]; then
 		log_error "Not a directory..."
 		exit 1
 	fi
-	
+
 	cd $dir
 	inside_git_repo="$(git rev-parse --is-inside-work-tree 2>/dev/null)"
 	# check if given directory is git, run just there, otherwise recursively
