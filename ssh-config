@@ -11,3 +11,12 @@ Host sms2sheets
 	HostName amamzonstuff
 	User ubuntu
 	IdentityFile ~/work/SMSApp.pem
+
+Host server
+	HostName eatmyfeet
+	User kevin
+
+Host the-server
+	HostName eatmyfeet
+	User theuser
+
