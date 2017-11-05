@@ -1,8 +1,0 @@
-#! /bin/bash
-
-dirs=(var usr home dev bin boot etc mnt root sbin sys)
-
-for d in "${dirs[@]}"; do
-  usage=$(du -sh /$d)
-  echo "$usage"
-done

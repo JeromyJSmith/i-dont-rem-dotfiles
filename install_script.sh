@@ -6,7 +6,7 @@
 mock=0
 dir=~/dotfiles
 olddir=~/old_dotfiles
-ignorefiles="README.md install_script.sh my_scripts boilerplate linux-cheat-sheet.md"
+ignorefiles="README.md install_script.sh scripts PersonalScripts log4bash boilerplate linux-cheat-sheet.md error.h ssh-config work-vmrc"
 
 if [ "$#" -ne 0 ]; then
   echo "Running in test mode (only lists output)"
@@ -36,6 +36,13 @@ if [ "$mock" -eq "1" ]; then
     echo "-> create symlink for $fname"
     #ln -s $entry ~/.$fname
   done
+
+  for script in $dir/scripts/*; do
+    scriptname=$(basename $script)
+    echo "-> creating symlink for $scriptname"
+    # ln -s $script $HOME/bin/${scriptname}
+
+
   echo "...done"
   exit 0
 fi
@@ -55,4 +62,17 @@ for entry in $dir/*; do
   echo "-> create symlink for $fname"
   ln -s $entry ~/.$fname
 done
+
+echo "Placing ssh config..."
+#mv ~/.ssh/config $olddir
+#ln -s ssh-config ~/.ssh/config
+
+echo "Creating ${HOME}/bin..."
+mkdir ~/bin
+
+for script in $dir/scripts/*; do
+  scriptname=$(basename $script)
+  echo "-> creating symlink for $scriptname"
+  # ln -s $script $HOME/bin/${scriptname}
+
 echo "...done"

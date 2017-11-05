@@ -1,0 +1,11 @@
+OBJECTS= color.o
+CFLAGS= -g -Wall -c
+LDLIBS=
+CC=c99
+
+.PHONY: force
+
+color.o: force
+	$(CC) $(CFLAGS) $*.c
+clean:
+	rm $(OBJECTS)
