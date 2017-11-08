@@ -16,4 +16,4 @@ about the location of the color logging/boilerplate functions files I source.
 ## Ideas
 - trello-quick-add
 - docker-wrapper
-
+- file-starter
