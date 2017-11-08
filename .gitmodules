@@ -1,6 +1,3 @@
-[submodule "PersonalScripts"]
-	path = PersonalScripts
-	url = https://github.com/I-Dont-Remember/PersonalScripts
 [submodule "log4bash"]
 	path = log4bash
 	url = https://github.com/fredpalmer/log4bash
