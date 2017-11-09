@@ -6,7 +6,7 @@
 mock=0
 dir=~/dotfiles
 olddir=~/old_dotfiles
-ignorefiles="README.md install_script.sh scripts PersonalScripts log4bash boilerplate linux-cheat-sheet.md error.h ssh-config work-vmrc"
+ignorefiles="README.md install_script.sh scripts scripts_deprecated log4bash tmp boilerplate linux-cheat-sheet.md"
 
 if [ "$#" -ne 0 ]; then
   echo "Running in test mode (only lists output)"
