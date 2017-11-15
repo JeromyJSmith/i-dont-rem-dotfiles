@@ -58,7 +58,7 @@ check_git_repo() {
 	if [ ! -z "$remotes" ]; then
 		for remote in "${remotes[@]}"; do
 			echo_blue "----> Checking remote ${remote}/master..."
-			output=$(git log --oneline -- HEAD.."$remote"/master)
+			output=$(git log HEAD.."$remote"/master --oneline)
 			if [ "$output" != "" ]; then
 				log_warning "HEAD is behind "$remote"/master, need to pull"
 				clean=1
