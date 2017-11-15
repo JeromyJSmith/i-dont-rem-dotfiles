@@ -53,11 +53,11 @@ check_git_repo() {
 	fi
 
 	# have to convert string output into a list
+	git fetch --all &> /dev/null
 	remotes=($(git remote))
 	if [ ! -z "$remotes" ]; then
 		for remote in "${remotes[@]}"; do
 			echo_blue "----> Checking remote ${remote}/master..."
-			git fetch $remote &> /dev/null
 			output=$(git log --oneline -- HEAD.."$remote"/master)
 			if [ "$output" != "" ]; then
 				log_warning "HEAD is behind "$remote"/master, need to pull"
