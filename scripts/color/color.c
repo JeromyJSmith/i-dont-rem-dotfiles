@@ -2,7 +2,11 @@
 #include <stdlib.h>
 #include "color.h"
 #include <string.h>
-
+// https://stackoverflow.com/questions/5947742/how-to-change-the-output-color-of-echo-in-linux
+/*
+    Console can handle Bold, underline, background, high intensity,
+    flashing, and more.  Iteratively add to this library as we use C more.
+*/
 
 void print_code(int ansii_num, char* message, int no_newline) {
     if (ansii_num > 255 || ansii_num < 0) {
@@ -17,12 +21,27 @@ void print_code(int ansii_num, char* message, int no_newline) {
 
 }
 
-void cprint(char c, int is_bold, char* message) {
-    char* color_string = "color";
-    char* reset_string = "reset";
+void cprint(enum color c, int is_bold, char* message) {
+    char* reset_string = "\e[0m";
 
     switch(c) {
         // choose color type
+        case BLACK:
+            break;
+        case RED:
+            break;
+        case GREEN:
+            break;
+        case YELLOW:
+            break;
+        case BLUE:
+            break;
+        case PURPLE:
+            break;
+        case CYAN:
+            break;
+        case WHITE:
+            break;
     }
 
    if (is_bold) {
@@ -30,7 +49,7 @@ void cprint(char c, int is_bold, char* message) {
    }
 
   // might need to do special things for newlines/other end of lines
-  printf("%s", color_string);
+  printf("%s", "color_string");
   printf("%s", message);
   printf("%s", reset_string);
 }
