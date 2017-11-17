@@ -19,7 +19,8 @@ alias boot-disable='sudo systemctl disable'
 alias is-enabled='sudo sytemctl is-enabled'
 alias is-active='sudo systemctl is-active'
 
-alias diskspace='df -P -kHl'
+alias diskspace='df -P -khl'
+alias fstypes='df -Th'
 alias rootdiskspace='sudo du -hsx /* | sort -rh | head -n 40'
 alias ports="netstat -tulanp"
 alias dirusage="du -ch | grep total"
