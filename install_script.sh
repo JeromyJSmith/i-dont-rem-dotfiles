@@ -41,7 +41,7 @@ if [ "$mock" -eq "1" ]; then
     scriptname=$(basename $script)
     echo "-> creating symlink for $scriptname"
     # ln -s $script $HOME/bin/${scriptname}
-
+  done
 
   echo "...done"
   exit 0
@@ -74,5 +74,5 @@ for script in $dir/scripts/*; do
   scriptname=$(basename $script)
   echo "-> creating symlink for $scriptname"
   # ln -s $script $HOME/bin/${scriptname}
-
+done
 echo "...done"
