@@ -54,6 +54,18 @@ extract() {
             *.tar.gz)
                 tar xvzf $1
                 ;;
+            *tar.xz)
+               tar xvf $1
+               ;;
+           *.tar)
+               tar xvf $1
+               ;;
+           *.tbz2)
+               tar xvjf $1
+               ;;
+           *.tgz)
+               tar xvzf $1
+               ;;
             *.bz2)
                 bunzip2 $1
                 ;;
@@ -63,18 +75,6 @@ extract() {
             *.gz)
                 gunzip $1
                 ;;
-             *.xz)
-                tar xvf $1
-                ;;
-            *.tar)
-                tar xvf $1
-                ;;
-            *.tbz2)
-                tar xvjf $1
-                ;;
-            *.tgz)
-                tar xvzf $1
-                ;;
             *.zip)
                 unzip $1
                 ;;
@@ -83,6 +83,9 @@ extract() {
                 ;;
             *.7z)
                 7z x $1
+                ;;
+            *.xz)
+                unxz $1
                 ;;
             *)
                 echo "'$1' cannot be extracted via extract"
@@ -164,3 +167,6 @@ alias cminicom='minicom -c on'
 alias v='vim'
 alias cminiusb='minicom -c on -D /dev/ttyUSB0'
 alias rundock='docker run --rm -it'
+
+
+# ls -F (append indicator to entries)
