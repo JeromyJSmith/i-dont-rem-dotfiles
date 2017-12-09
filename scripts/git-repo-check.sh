@@ -122,3 +122,4 @@ git_summary() {
 
 
 git_summary $@
+cowsay " All Done! "
