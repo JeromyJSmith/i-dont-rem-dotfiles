@@ -10,8 +10,8 @@
 # To fix recurring ssh passphrase questions, use https://askubuntu.com/questions/362280/enter-ssh-passphrase-once
 # or similar, not an issue with the script
 
-. /home/kquinn/dotfiles/boilerplate/bash_functions.sh
-. /home/kquinn/dotfiles/log4bash/log4bash.sh
+. ~/dotfiles/boilerplate/bash_functions.sh
+. ~/dotfiles/log4bash/log4bash.sh
 
 echo_blue() {
 	echo -en "\033[0;36m"
