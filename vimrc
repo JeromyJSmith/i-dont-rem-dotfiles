@@ -14,3 +14,6 @@ nnoremap <Leader>rtw :%s/\s\+$//e<CR>
 "* highlight trailing white space and tabs
 set listchars=tab:>-,trail:-
 set list
+
+set pastetoggle=<F8>
+
