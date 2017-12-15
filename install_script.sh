@@ -8,49 +8,61 @@ dir=~/dotfiles
 olddir=~/old_dotfiles
 ignorefiles="README.md install_script.sh scripts scripts_deprecated log4bash tmp boilerplate linux-cheat-sheet.md"
 
-if [ "$#" -ne 0 ]; then
+echo "__________________________________________"
+echo "Running install script for Kevin's dotfiles!"
+echo "__________________________________________"
+echo ""
+
+if [ "$#" -eq 0 ]; then
   echo "Running in test mode (only lists output)"
   mock=1
 fi
 
-echo "Create backup folder for any existing dotfiles.."
-mkdir -p $olddir
-echo "...done"
+# echo "Create backup folder for any existing dotfiles.."
+# mkdir $olddir 2> /dev/null || echo "$olddir already exists, fail now to prevent overwrite." && exit 1
+# echo "...done"
 
 echo "Changing to $dir.."
 cd $dir
 
 if [ "$mock" -eq "1" ]; then
-  echo "Moving any existing files in ~ to $olddir.."
-  for entry in $dir/*; do
-    fname=$(basename $entry)
+  echo "Moving any existing files in $HOME to $olddir.."
+for entry in $dir/*; do
+  fname=$(basename $entry)
 
-    if in_list "$ignorefiles" "$fname"; then
-      echo "-> ignored $fname"
-      continue
-    fi
-    if [[ -e ~/.$fname ]]; then
-      echo "-> moving .$fname"
-      #mv ~/.$fname $olddir
-    fi
+  if in_list "$ignorefiles" "$fname"; then
+    echo "-> ignored $fname"
+    continue
+  fi
+  if [[ -e ~/.$fname ]]; then
+    echo "-> moving .$fname"
+  fi
+  if [[ $fname == "ssh-config" ]]; then
+    echo "Creating symlink for .ssh/config"
+    mkdir ~/.ssh/ 2> /dev/null || true
+  else
     echo "-> create symlink for $fname"
-    #ln -s $entry ~/.$fname
-  done
+  fi
+done
 
-  for script in $dir/scripts/*; do
-    scriptname=$(basename $script)
-    echo "-> creating symlink for $scriptname"
-    # ln -s $script $HOME/bin/${scriptname}
-  done
+echo "Creating ${HOME}/bin..."
+mkdir ~/bin 2> /dev/null || true
 
-  echo "...done"
-  exit 0
+for script in $dir/scripts/*; do
+  scriptname=$(basename $script)
+  echo "-> (placeholder) creating symlink for $scriptname"
+done
+echo "...done"
 fi
+exit 0
 
+########################################
+# Real script
+########################################
 echo "Moving any existing files in ~ to $olddir.."
 for entry in $dir/*; do
   fname=$(basename $entry)
- 
+
   if in_list "$ignorefiles" "$fname"; then
     echo "-> ignored $fname"
     continue
@@ -59,20 +71,23 @@ for entry in $dir/*; do
     echo "-> moving .$fname"
     mv ~/.$fname $olddir
   fi
-  echo "-> create symlink for $fname"
-  ln -s $entry ~/.$fname
+  if [[ $fname == "ssh-config" ]]; then
+    echo "Creating symlink for .ssh/config"
+    mkdir ~/.ssh/ || true
+    mv ~/.ssh/config $olddir/ssh-config
+    ln -s ssh-config ~/.ssh/config
+  else
+    echo "-> create symlink for $fname"
+    ln -s $entry ~/.$fname
+  fi
 done
 
-echo "Placing ssh config..."
-#mv ~/.ssh/config $olddir
-#ln -s ssh-config ~/.ssh/config
-
 echo "Creating ${HOME}/bin..."
-mkdir ~/bin
+mkdir ~/bin || true
 
 for script in $dir/scripts/*; do
   scriptname=$(basename $script)
-  echo "-> creating symlink for $scriptname"
+  echo "-> (placeholder) creating symlink for $scriptname"
   # ln -s $script $HOME/bin/${scriptname}
 done
 echo "...done"

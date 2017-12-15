@@ -1,3 +1,7 @@
+Host pizero
+	Hostname mrzero
+	User pi
+
 Host pihole
 	HostName raspberrypi
 	User kevin
