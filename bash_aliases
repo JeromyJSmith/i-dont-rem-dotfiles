@@ -168,6 +168,5 @@ alias cminicom='minicom -c on'
 alias v='vim'
 alias cminiusb='minicom -c on -D /dev/ttyUSB0'
 alias rundock='docker run --rm -it'
-
-
 # ls -F (append indicator to entries)
+#cd $(dirname $(find drivers/ -name dpaa_eth.c))

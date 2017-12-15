@@ -6,7 +6,7 @@
 mock=0
 dir=~/dotfiles
 olddir=~/old_dotfiles
-ignorefiles="README.md install_script.sh scripts scripts_deprecated log4bash tmp boilerplate linux-cheat-sheet.md"
+ignorefiles="README.md install_script.sh scripts scripts_deprecated log4bash tmp boilerplate cheat-sheets"
 
 echo "__________________________________________"
 echo "Running install script for Kevin's dotfiles!"
