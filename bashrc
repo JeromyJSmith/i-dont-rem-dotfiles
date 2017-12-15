@@ -116,7 +116,3 @@ if ! shopt -oq posix; then
   fi
 fi
 
-if [ -d $HOME/bin ]; then
-    PATH="$HOME/bin:$PATH"
-fi
-
