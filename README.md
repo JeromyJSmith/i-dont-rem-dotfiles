@@ -8,3 +8,8 @@ It also gives me the ability to quickly make any Linux machine have my personal 
   
 #### Notes
 - All files added to this directory should have dot removed, for easier git usage and also keeping install script simple.
+
+- Why do I have Go files in my `scripts/` instead of using only scripting languages?  
+  1. Sometimes it's nice to have a binary
+  2. I need the practice
+  3. Because I can

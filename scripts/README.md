@@ -13,6 +13,10 @@ about the location of the color logging/boilerplate functions files I source.
 ### disk-usage
 - Needs more fleshing out, but meant to be a more indepth look into usage of the various root folders
 
+### go-src/book-picker
+- Reads a random line from a text file until told to stop.  This helps me find what to read from
+the large collection of pdf books I have.
+
 ## Ideas
 - trello-quick-add
 - docker-wrapper
