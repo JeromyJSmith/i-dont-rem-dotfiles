@@ -19,6 +19,8 @@ alias boot-disable='sudo systemctl disable'
 alias is-enabled='sudo sytemctl is-enabled'
 alias is-active='sudo systemctl is-active'
 
+alias python='echo "## alias ##"; python3'
+alias pip='echo "## alias ##"; pip3'
 alias diskspace='df -P -khl'
 alias fstypes='df -Th'
 alias rootdiskspace='sudo du -hsx /* | sort -rh | head -n 40'
@@ -26,7 +28,7 @@ alias ports="netstat -tulanp"
 alias dirusage="du -ch | grep total"
 alias totalusage="df -hl --total | grep total"
 alias showpermssions='find . -maxdepth 1 -printf "%m:%f\n"'
-
+alias mykde_desktop_dissapeared="killall plasmashell; kstart plasmashell"
 #=======================================================
 # Movement/ Creation
 #=======================================================
@@ -142,6 +144,8 @@ buildserve() {
 dockip() {
   docker inspect --format '{{ .NetworkSettings.IPAddress }}' "$@"
 }
+
+alias npmglobal="npm list -g --depth=0"
 
 # ls, with chmod-like permissions and more.
 # @param $1 The directory to ls

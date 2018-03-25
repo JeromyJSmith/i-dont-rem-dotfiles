@@ -85,6 +85,8 @@ done
 echo "Creating ${HOME}/bin..."
 mkdir ~/bin || true
 
+# Not worth the effort of the script, we'll put what we want in ~/bin 
+# when we need it
 for script in $dir/scripts/*; do
   scriptname=$(basename $script)
   echo "-> (placeholder) creating symlink for $scriptname"
