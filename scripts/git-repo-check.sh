@@ -14,19 +14,19 @@
 . ~/dotfiles/log4bash/log4bash.sh
 
 echo_blue() {
-	echo -en "\033[0;36m"
+	echo -en "\\033[0;36m"
 	echo "$1"
-	echo -en "\033[0m"
+	echo -en "\\033[0m"
 }
 
 check_git_repo() {
 	clean=0
-	repo=$(basename $1)
+	repo=$(basename "$1")
 
 	echo_blue "** Checking $repo..."
 
 	inside_git_repo="$(git rev-parse --is-inside-work-tree 2>/dev/null)"
-	if [ ! $inside_git_repo ]; then
+	if [ ! "$inside_git_repo" ]; then
 		echo_blue "----> Not a Git repository"
 		return 1
 	fi
@@ -37,17 +37,17 @@ check_git_repo() {
 	all_tracked=$(git status | grep 'Untracked' -c)
 	all_commited=$(git diff-index --cached --quiet HEAD --ignore-submodules --)$?
 
-	if [ $all_staged -ne 0 ]; then
+	if [ "$all_staged" -ne 0 ]; then
 		log_warning "Need to handle unstaged files"
 		clean=1
 	fi
 
-	if [ $all_tracked -ne 0 ]; then
+	if [ "$all_tracked" -ne 0 ]; then
 		log_warning "Need to handle untracked files"
 		clean=1
 	fi
 
-	if [ $all_commited -ne 0 ]; then
+	if [ "$all_commited" -ne 0 ]; then
 		log_warning "Need to commit files"
 		clean=1
 	fi
@@ -55,12 +55,12 @@ check_git_repo() {
 	# have to convert string output into a list
 	git fetch --all &> /dev/null
 	remotes=($(git remote))
-	if [ ! -z "$remotes" ]; then
+	if [ ! -z "${remotes[*]}" ]; then
 		for remote in "${remotes[@]}"; do
 			echo_blue "----> Checking remote ${remote}/master..."
 			output=$(git log HEAD.."$remote"/master --oneline)
 			if [ "$output" != "" ]; then
-				log_warning "HEAD is behind "$remote"/master, need to pull"
+				log_warning "HEAD is behind ${remote}/master, need to pull"
 				clean=1
 			fi
 		done
@@ -70,7 +70,7 @@ check_git_repo() {
 
 	#check push
 # TODO: use plumbing git commands not porcelain for info
-	if [ $(git status | grep 'Your branch is ahead' -c) -ne 0 ]; then
+	if [ "$(git status | grep 'Your branch is ahead' -c)" -ne 0 ]; then
 		log_warning "Commits need to be pushed"
 		clean=1
 	fi
@@ -93,7 +93,7 @@ git_summary() {
 		exit 1
 	fi
 
-	cd $dir
+	cd "$dir" || exit
 	inside_git_repo="$(git rev-parse --is-inside-work-tree 2>/dev/null)"
 	# check if given directory is git, run just there, otherwise recursively
 	# --- what should we do if run from inside a git repo directory?
@@ -111,15 +111,15 @@ git_summary() {
 	else
 	# Recursively check directories in this dir
 		echo_blue "Running on directories under $dir..."
-		for f in $dir/*; do
+		for f in "$dir"/*; do
 			# Only run on directories
 			[ -d "${f}" ] || continue
-			cd $f
+			cd "$f" || exit
 			check_git_repo "$f"
 		done
 	fi
 }
 
 
-git_summary $@
+git_summary "$@"
 cowsay " All Done! "
