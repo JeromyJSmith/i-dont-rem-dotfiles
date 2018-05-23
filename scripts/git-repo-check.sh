@@ -86,8 +86,13 @@ git_summary() {
 	# 	log_error "Need a directory argument..."
 	# 	exit 1
 	# fi
+# TODO: this will fail unless you check if greadlink is installed (brew install coreutils), most probably don't have it
+	case "${os}" in
+		Linux*) dir="$(readlink -fn "$1")";;
+		Darwin*) dir="(greadlink -f "$1")";;
+		*) exit 1
+	esac
 
-	dir="$(readlink -fn "$1")"
 	if [ !  -d "$dir" ]; then
 		log_error "Not a directory..."
 		exit 1
@@ -120,6 +125,7 @@ git_summary() {
 	fi
 }
 
-
+os=$(uname -s)
+echo $os
 git_summary "$@"
 cowsay " All Done! "
