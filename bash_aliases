@@ -2,33 +2,36 @@
 # Aliases file
 #=======================================================
 alias showaliases="less $HOME/.bash_aliases"
-alias editaliases="vim $HOME/.bash_aliases && source ~/.bashrc"
-alias reloadprofile="source ~/.bashrc"
+alias editaliases="vim $HOME/.bash_aliases"
+alias reloadrc="source ~/.bashrc"
+alias reloadprofile="source ~/.bash_profile"
 
 #=======================================================
 # Services/ System info
 #=======================================================
-alias start='sudo systemctl start'
-alias stop='sudo systemctl stop'
-alias status='sudo systemctl status'
-alias restart='sudo systemctl restart'
-alias reload='sudo systemctl reload'
-alias reload-or-restart='sudo systemctl reload-or-restart'
-alias boot-enable='sudo systemctl enable'
-alias boot-disable='sudo systemctl disable'
-alias is-enabled='sudo sytemctl is-enabled'
-alias is-active='sudo systemctl is-active'
+# # TODO: Review these since they are rarely used # # # # #
+# alias start='sudo systemctl start'
+# alias stop='sudo systemctl stop'
+# alias status='sudo systemctl status'
+# alias restart='sudo systemctl restart'
+# alias reload='sudo systemctl reload'
+# alias reload-or-restart='sudo systemctl reload-or-restart'
+# alias boot-enable='sudo systemctl enable'
+# alias boot-disable='sudo systemctl disable'
+# alias is-enabled='sudo sytemctl is-enabled'
+# alias is-active='sudo systemctl is-active'
+# 
+# alias python='echo "## alias ##"; python3'
+# alias pip='echo "## alias ##"; pip3'
+# alias diskspace='df -P -khl'
+# alias fstypes='df -Th'
+# alias rootdiskspace='sudo du -hsx /* | sort -rh | head -n 40'
+# alias ports="netstat -tulanp"
+# alias dirusage="du -ch | grep total"
+# alias totalusage="df -hl --total | grep total"
+# alias showpermssions='find . -maxdepth 1 -printf "%m:%f\n"'
+# alias mykde_desktop_dissapeared="killall plasmashell; kstart plasmashell"
 
-alias python='echo "## alias ##"; python3'
-alias pip='echo "## alias ##"; pip3'
-alias diskspace='df -P -khl'
-alias fstypes='df -Th'
-alias rootdiskspace='sudo du -hsx /* | sort -rh | head -n 40'
-alias ports="netstat -tulanp"
-alias dirusage="du -ch | grep total"
-alias totalusage="df -hl --total | grep total"
-alias showpermssions='find . -maxdepth 1 -printf "%m:%f\n"'
-alias mykde_desktop_dissapeared="killall plasmashell; kstart plasmashell"
 #=======================================================
 # Movement/ Creation
 #=======================================================
@@ -113,6 +116,9 @@ alias ld='ls -ld .??*'
 alias llh='ls -lh'
 alias lls='ls -ls'
 alias lsh='ls -sh'
+alias ll='ls -alF'
+alias la='ls -A'
+alias l='ls -CF'
 nullify () {
     "$@" >& /dev/null
 }
@@ -126,14 +132,16 @@ startenv() {
 #==========================================================
 # Git
 #==========================================================
-alias glog='git log --oneline'
-alias gstat='git status'
+alias g="git"
+alias gl='git log --oneline'
+alias gs='git status'
 alias gpatchadd='git add --patch'
-alias gdiff-staged='git diff --cached'
-alias gdif='git diff'
-alias gcpk='git cherry-pick'
+alias gdiff-s='git diff --cached'
+alias gdiff='git diff'
+alias gcherry='git cherry-pick'
 alias scommit='git commit -s'
-alias gcomm='git commit'
+alias gc='git commit'
+
 #==========================================================
 # No Obvious Group (Yet)
 #==========================================================
@@ -171,6 +179,10 @@ alias viewtar='echo "**Use less if you need searching **" && tar -tvf'
 alias cminicom='minicom -c on'
 alias v='vim'
 alias cminiusb='minicom -c on -D /dev/ttyUSB0'
-alias rundock='docker run --rm -it'
+alias rundocker='docker run --rm -it'
 # ls -F (append indicator to entries)
-#cd $(dirname $(find drivers/ -name dpaa_eth.c))
+alias macinfo="system_profiler SPSoftwareDataType"
+alias localstack-up="TMPDIR=/private$TMPDIR docker-compose up"
+# Alert for long running commands.  Use like so:
+#   sleep 10; alert
+alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'

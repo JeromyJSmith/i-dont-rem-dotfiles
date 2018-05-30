@@ -1,8 +1,16 @@
-# Bash sources this first, but if it can't find it will source .profile
+# # # # 
+# Kevin's Hyperjs Bash Profile
+#     - Why this is bash_profile and not bashrc https://github.com/zeit/hyper/issues/699
+# # # #
 
-###### defaults from Kubuntu? ##########
-#[[ -s "$HOME/.profile" ]] && source "$HOME/.profile" # Load the default .profile
-#
-#[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
-##############################################################################
 
+if [ -f ~/.bashrc ]; then
+	source ~/.bashrc
+fi
+
+if [ -f ~/.propeller_aliases ]; then
+	source ~/.propeller_aliases
+fi
+
+# Access 'mongo' command
+export PATH="/usr/local/opt/mongodb@3.4/bin:$PATH"
