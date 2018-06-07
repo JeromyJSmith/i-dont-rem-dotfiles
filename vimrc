@@ -1,17 +1,21 @@
-" If it doesn't have a comment, means it is temporary and needs to be documented.
-" Most of these are not intuitive, so provide lots of description for what it does/resources
-" to make sure we always understand.
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Text
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Whitespace
+match ErrorMsg '\s\+$' 
 
-set autoindent
-set smartindent
+" Remove trailing whitespace with \rtw (press and hold \ then rtw) 
+nnoremap <Leader>rtw :%s/\s\+$//e<CR>
 
-"======[Line numbers]===============
-set number
-set relativenumber
+"* highlight trailing white space and tabs
+set listchars=tab:>-,trail:-
+set list
 
-"* Get tab stuff setup
-set tabstop=8 softtabstop=0 expandtab shiftwidth=4 smarttab
+syn on se title
 
+"https://vi.stackexchange.com/questions/454/whats-the-simplest-way-to-strip-trailing-whitespace-from-all-lines-in-a-file
+"Remove all trailing whitespace by pressing F5, (second part is leading whitespace)
+nnoremap <F5> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:%s/^\s\+//e<Bar>:let @/=_s<Bar><CR>
 
 " Only do this part when compiled with support for autocommands.
 if has("autocmd")
@@ -31,22 +35,50 @@ set shiftwidth=4    " Indents will have a width of 4.
 set softtabstop=4   " Sets the number of columns for a TAB.
 set expandtab       " Expand TABs to spaces.
 
+set autoindent
+set smartindent
 
 
-"=====[ Whitespace ]================ 
-match ErrorMsg '\s\+$' 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Look and Feel
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Show status line
+set laststatus=2
+set statusline=\ %{HasPaste()}%F%m%r%h\ %w\ \ CWD:\ %r%{getcwd()}%h\ \ \ Line:\ %l\ \ Column:\ %c
 
-" Remove trailing whitespace with \rtw (press and hold \ then rtw) 
-nnoremap <Leader>rtw :%s/\s\+$//e<CR>
+colorscheme peachpuff
 
-"* highlight trailing white space and tabs
-set listchars=tab:>-,trail:-
-set list
+" Show matching brackets when text indicator over them
+set showmatch
 
-set pastetoggle=<F8>
+"Line numbers
+set number
+set relativenumber
 
-syn on se title
 
-"https://vi.stackexchange.com/questions/454/whats-the-simplest-way-to-strip-trailing-whitespace-from-all-lines-in-a-file
-"Remove all trailing whitespace by pressing F5, (second part is leading whitespace)
-nnoremap <F5> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:%s/^\s\+//e<Bar>:let @/=_s<Bar><CR>
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Misc
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" :W saves file, good for permission-denied error
+command W w !sudo tee % /dev/null
+
+" Turn off file backup since stuff in git usually
+set nobackup
+set nowb
+set noswapfile
+
+set pastetoggle=pp
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"  => Helper Functions
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Returns true if paste mode is enabled
+function! HasPaste()
+    if &paste
+        return 'PASTE MODE  '
+    endif
+    return ''
+endfunction
+
+
