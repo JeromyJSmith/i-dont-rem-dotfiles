@@ -136,11 +136,14 @@ alias g="git"
 alias gl='git log --oneline'
 alias gs='git status'
 alias gpatchadd='git add --patch'
-alias gdiff-s='git diff --cached'
-alias gdiff='git diff'
+alias gds='git diff --cached'
+alias gd='git diff'
 alias gcherry='git cherry-pick'
 alias scommit='git commit -s'
 alias gc='git commit'
+alias ga='git add'
+alias gb='git branch'
+
 
 #==========================================================
 # No Obvious Group (Yet)
