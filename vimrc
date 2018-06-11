@@ -44,7 +44,32 @@ set smartindent
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Show status line
 set laststatus=2
-set statusline=\ %{HasPaste()}%F%m%r%h\ %w\ \ CWD:\ %r%{getcwd()}%h\ \ \ Line:\ %l\ \ Column:\ %c
+
+function! InsertStatuslineColor(mode)
+  if a:mode == 'i'
+    hi statusline guibg=Cyan ctermfg=6 guifg=Black ctermbg=0
+  elseif a:mode == 'r'
+    hi statusline guibg=Purple ctermfg=5 guifg=Black ctermbg=0
+  else
+    hi statusline guibg=Cyan ctermfg=6 guifg=Black ctermbg=0
+  endif
+endfunction
+
+au BufEnter * hi statusline guibg=DarkGrey ctermfg=8 guifg=Black ctermbg=15
+au InsertEnter * call InsertStatuslineColor(v:insertmode)
+au InsertLeave * hi statusline guibg=DarkGrey ctermfg=8 guifg=Black ctermbg=15
+
+
+set statusline=
+set statusline+=%{HasPaste()}
+" TODO: find a new one of these, this one causes issues with random characters https://github.com/fatih/vim-go/issues/71
+"set statusline+=%{StatuslineGit()}
+set statusline+=%F%m%r%h
+" Switch to right side
+set statusline+=%=
+set statusline+=%w\ 
+set statusline+=%p%%\ \ %l:%c\ \ 
+"set statusline=\ %{HasPaste()}%F%m%r%h\ %w\ \ CWD:\ %r%{getcwd()}%h\ \ \ %p%%\ %l:%c
 
 colorscheme peachpuff
 
@@ -81,4 +106,12 @@ function! HasPaste()
     return ''
 endfunction
 
+function! GitBranch()
+  return system("git rev-parse --abbrev-ref HEAD 2>/dev/null | tr -d '\n'")
+endfunction
+
+function! StatuslineGit()
+  let l:branchname = GitBranch()
+  return strlen(l:branchname) > 0?'  '.l:branchname.' ':''
+endfunction
 
