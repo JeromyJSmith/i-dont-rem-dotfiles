@@ -38,6 +38,9 @@ set expandtab       " Expand TABs to spaces.
 set autoindent
 set smartindent
 
+" Hopefully handle the ^Ms that sometimes crop up
+set fileformat=unix
+set fileformats=unix,dos
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Look and Feel
@@ -92,7 +95,7 @@ set nobackup
 set nowb
 set noswapfile
 
-set pastetoggle=pp
+set pastetoggle=<C-P>
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
