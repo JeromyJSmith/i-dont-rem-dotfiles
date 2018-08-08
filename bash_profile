@@ -18,3 +18,6 @@ fi
 
 # Access 'mongo' command
 export PATH="/usr/local/opt/mongodb@3.4/bin:$PATH"
+
+# Virtualenv on Mac
+export PATH="$PATH:~/Library/Python"
