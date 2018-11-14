@@ -12,7 +12,7 @@ if [ -f ~/.propeller_aliases ]; then
 	source ~/.propeller_aliases
 fi
 
-if [ -f $(brew --prefix)/etc/bash_completion ]; then
+if command -v brew && [ -f $(brew --prefix)/etc/bash_completion ]; then
 . $(brew --prefix)/etc/bash_completion
 fi
 

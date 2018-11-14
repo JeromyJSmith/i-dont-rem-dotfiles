@@ -112,3 +112,9 @@ export CLICOLOR=1
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+# access modelsim in linux yah boiii
+export PATH=$PATH:~/intelFPGA_pro/18.1/modelsim_ase/bin
+export PATH=~/go/bin:$PATH
+# python user libs python -m site --user-base
+export PATH=~/.local/bin:$PATH

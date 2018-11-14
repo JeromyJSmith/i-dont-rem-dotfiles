@@ -1,9 +1,9 @@
-Host pizero
-	Hostname mrzero
+Host mrzero
+	Hostname mrzero.local
 	User kevin
 
-Host pihole
-	HostName 192.168.1.69
+Host server
+	HostName server.local
 	User kevin
 	
 Host gimmeDeals
@@ -16,14 +16,6 @@ Host sms2sheets
 	User ubuntu
 	IdentityFile ~/work/SMSApp.pem
 
-Host server
-	HostName eatmyfeet
-	User kevin
-
-Host the-server
-	HostName eatmyfeet
-	User theuser
-
 Host cae
     ForwardX11 yes
     HostName best-tux.cae.wisc.edu
@@ -32,4 +24,9 @@ Host cae
 Host cs
     HostName best-linux.cs.wisc.edu
     user kquinn
+
+Host mininet
+    HostName mininet-24.cs.wisc.edu
+    User mininet
+    ForwardX11 yes
 

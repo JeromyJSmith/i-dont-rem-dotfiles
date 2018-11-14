@@ -33,3 +33,7 @@ export PATH=$PATH:~/.yarn/bin
 # Android Studio junk
 export ANDROID_HOME=~/Android/Sdk
 export PATH=$PATH:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools
+
+# user installs of python tools
+export PATH=~/.local/bin:$PATH
+

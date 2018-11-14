@@ -141,6 +141,7 @@ alias gd='git diff'
 alias gcherry='git cherry-pick'
 alias scommit='git commit -s'
 alias gc='git commit'
+alias gco='git checkout'
 alias ga='git add'
 alias gb='git branch'
 
@@ -189,4 +190,7 @@ alias localstack-up="TMPDIR=/private$TMPDIR docker-compose up"
 # Alert for long running commands.  Use like so:
 #   sleep 10; alert
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
-alias myip='curl https://wtfismyip.com/json'
+alias wtfismyip='curl https://wtfismyip.com/json'
+alias weather='curl wttr.in'
+alias vpn='sudo openconnect --authgroup COMP_SCI_SPLIT dept-ra-cssc.vpn.wisc.edu'
+
