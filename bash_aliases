@@ -40,8 +40,8 @@ cs() {
 }
 
 mkcd() {
-  mkdir $1
-  cd $1
+  mkdir -p -- "$1"
+  cd "$1"
 }
 
 alias ..='cd ..'
@@ -187,10 +187,16 @@ alias rundocker='docker run --rm -it'
 # ls -F (append indicator to entries)
 alias macinfo="system_profiler SPSoftwareDataType"
 alias localstack-up="TMPDIR=/private$TMPDIR docker-compose up"
+alias local-compose="TMPDIR=/private$TMPDIR docker-compose"
 # Alert for long running commands.  Use like so:
 #   sleep 10; alert
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
 alias wtfismyip='curl https://wtfismyip.com/json'
 alias weather='curl wttr.in'
 alias vpn='sudo openconnect --authgroup COMP_SCI_SPLIT dept-ra-cssc.vpn.wisc.edu'
-
+alias myip='curl https://wtfismyip.com/json'
+featurebranch() {
+name=$1
+[ -z "$name" ] && return 1
+git checkout master && git pull && git checkout -b "${name}"
+}
