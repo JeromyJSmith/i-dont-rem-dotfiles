@@ -45,7 +45,7 @@ function main() {
     bi "blah"
 
 # browsers
-    bci "google-chrome"
+    bci "chromium"
     bci "firefox"
 
 
