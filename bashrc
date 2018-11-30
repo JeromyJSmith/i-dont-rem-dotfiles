@@ -106,7 +106,7 @@ export PATH=$HOME/bin:$PATH
 
 # Prompt, use http://bashrcgenerator.com/ for easy generation
 # Original \h:\W \u\$
-export PS1="\[\033[38;5;11m\]\w\[$(tput sgr0)\]\[\033[38;5;15m\] \[$(tput sgr0)\]\[\033[38;5;11m\][\[$(tput sgr0)\]\[\033[38;5;7m\]\$?\[$(tput sgr0)\]\[\033[38;5;11m\]]>\[$(tput sgr0)\]"
+export PS1="\[\033[38;5;11m\]\w\[$(tput sgr0)\]\[\033[38;5;15m\] \[$(tput sgr0)\]\[\033[38;5;11m\][\[$(tput sgr0)\]\[\033[38;5;7m\]\$?\[$(tput sgr0)\]\[\033[38;5;11m\]]▶ \[$(tput sgr0)\]"
 export CLICOLOR=1
 
 export NVM_DIR="$HOME/.nvm"
@@ -118,3 +118,7 @@ export PATH=$PATH:~/intelFPGA_pro/18.1/modelsim_ase/bin
 export PATH=~/go/bin:$PATH
 # python user libs python -m site --user-base
 export PATH=~/.local/bin:$PATH
+
+# Setup section that divides based on OS
+# https://stackoverflow.com/questions/394230/how-to-detect-the-os-from-a-bash-script
+
