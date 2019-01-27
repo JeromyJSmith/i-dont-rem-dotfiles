@@ -4,21 +4,21 @@
 # **********************************
 # helpers
 # **********************************
-function add_to_sources() {
+add_to_sources() {
     repo=$1
     filename=$2
     echo "$repo" >> /etc/apt/sources.list.d/"$filename".list
 }
 
-function ilog() {
+ilog() {
     log "installing $1..."
 }
 
-function log() {
+log() {
     echo "[*] $1"
 }
 
-function error() {
+error() {
     echo "[!] $1"
     # echo "[!] $1" | tee -a error.log
 }
@@ -34,7 +34,7 @@ update='apt-get update'
 # individual tasks
 # **********************************
 # @root
-function install-etcher() {
+install-etcher() {
     # https://github.com/balena-io/etcher
     # TODO: check again in a bit, looks like issue on their end
     ilog "Etcher"
@@ -45,49 +45,67 @@ function install-etcher() {
 }
 
 # @root
-function install-arduino() {
+install-arduino() {
     ilog "Arduino"
     $ai libcanberra-gtk-module \
         arduino
 }
 
 # @root
-function install-dropbox() {
+install-dropbox() {
     ilog "Dropbox"
 }
 
 # @root
-function install-react-native() {
+install-react-native() {
     echo "install react native stuff"
+    install-android-emulation
+}
+
+#@root
+install-android-emulation() {
+    # TODO: install android studio
+    # https://www.itzgeek.com/how-tos/linux/ubuntu-how-tos/how-to-install-android-studio-on-ubuntu-18-04-lts-bionic-beaver.html
+    echo "Installing android studio"
 }
 
 # @root
-function install-chromium() {
+install-chromium() {
     ilog "Chromium"
     # $ai chromium-browser
     $si chromium
 }
 
 # @root
-# function install-chrome() {
+install-browser-extensions() {
+    # ublock origin
+    # onetab ---> TODO: session buddy instead?
+    # https everywhere
+    # privacy badger?
+    # THIS NEEDS TO BE EXPANDED AND MADE CONSISTENT ACROSS BROWSERS
+    # TODO: have one browser that's full of shopping extensions and that's the only thing it gets used for
+}
+
+# @root
+# install-chrome() {
 #     apt install google-chrome-stable
 # }
 
 # @root
-function install-firefox() {
+install-firefox() {
     ilog "Firefox"
     $ai firefox
 }
 
 # @root
-function install-opera() {
+install-opera() {
     ilog "Opera"
     # $ai opera-stable
     $si opera
 }
 
 # @root
-function install-vscode() {
+install-vscode() {
     # process borrowed from https://github.com/gantsign/ansible-role-visual-studio-code/blob/master/tasks/install-apt.yml
     # Extensions:
     #   - eamodio.gitlens
@@ -98,6 +116,7 @@ function install-vscode() {
     #   - coenraads.bracket-pair-colorizer
     #   - timonwong.shellcheck
     #   - wayou.vscode-todo-highlight
+    #   - aaron-bond.better-comments
     ilog "vscode"
     $si vscode --classic
     #$ai gconf2 libasound2 libgtk2.0-0 libxss1
@@ -115,7 +134,7 @@ function install-vscode() {
 }
 
 # @user
-function finish-vscode() {
+finish-vscode() {
     str_extensions="eamodio.gitlens,\
 ms-vscode.go,\
 ms-python.python,\
@@ -133,7 +152,7 @@ minhthai.vscode-todo-parser"
 }
 
 # @root
-function install-virtualbox() {
+install-virtualbox() {
     ilog "Virtualbox"
     $ai virtualbox
     $update
@@ -141,51 +160,48 @@ function install-virtualbox() {
 }
 
 # @root 
-function install-vagrant() {
+install-vagrant() {
     ilog "Vagrant"
 }
 
 # @root
-function install-docker() {
+install-docker() {
     ilog "Docker"
 }
 
 # @root
-function install-spotify() {
+install-spotify() {
     ilog "Spotify"
     $si spotify
 }
 
 # @root
-function install-slack() {
+install-slack() {
     ilog "Slack"
     $si
 }
 
 # @root
-function install-go() {
-    # https://www.digitalocean.com/community/tutorials/how-to-install-go-on-ubuntu-18-04
+install-go() {
     ilog "Go"
-    # Can either use package version or from releases page to be more up to date
-    $ai golang-go
-    # setup Go env variables
+    # https://github.com/syndbg/goenv
 }
 
 # @root
-function install-python() {
+install-python() {
     ilog "Python"
     # install pyenv
     # install pipenv
 }
 
 # @user
-function finish-python() {
+finish-python() {
     log "Finish Python setup"
     # install any global pip tools (i.e. aws cli)
 }
 
 # @root
-function install-node() {
+install-node() {
     ilog "Node"
     # https://github.com/creationix/nvm
     # install nvm
@@ -193,13 +209,13 @@ function install-node() {
 }
 
 # @root
-function install-java() {
+install-java() {
     ilog "Java"
     # for the occasional time it is useful and learning other JVM languages
 }
 
 # @root
-function install-vpn() {
+install-vpn() {
     ilog "Wisc VPN"
     $ai openconnect \
         network-manager-openconnect \
@@ -207,7 +223,7 @@ function install-vpn() {
 }
 
 # @root
-function install-dev-packages() {
+install-dev-packages() {
     #   shelcheck - to make us not suck at Bash -  in future look into https://github.com/mvdan/sh formatters
     #   grip - markdown preview
     #   httpie - better than curl
@@ -235,7 +251,7 @@ function install-dev-packages() {
 }
 
 # @root
-function install-timeshift() {
+install-timeshift() {
     # https://itsfoss.com/backup-restore-linux-timeshift/
     ilog "Timeshift"
     apt-add-repository 'ppa:teejee2008/ppa'
@@ -244,7 +260,7 @@ function install-timeshift() {
 }
 
 # @root
-function install-misc-packages() {
+install-misc-packages() {
     #   meld - file comparison
     #   okular - for pdf viewing
     #   fdupes/fslint - clear duplicate files
@@ -253,6 +269,7 @@ function install-misc-packages() {
     #   ncdu - understand where space is
     #   wunderlisttux - desktop version of app we use
     #   recordmydesktop - captures video of a linux session
+    #   TODO: gnome tweaks & extensions
     ilog "Misc packages"
     $ai meld \
         okular \
@@ -273,14 +290,15 @@ function install-misc-packages() {
         make \
         gparted \
         wunderlisttux \
-        recordmydesktop
+        recordmydesktop \
+        gnome-tweak-tool
 
-
+# htop or glances? g is from pip https://nicolargo.github.io/glances/
 
 }
 
 # @root
-function remove-default-packages() {
+remove-default-packages() {
     log "remove default packages"
     # mostly games & unused software
     $ar aisleriot \
@@ -310,7 +328,7 @@ function remove-default-packages() {
 # @root
 # make sure all necessary tools & whatnot are setup
 # TODO: make sure Dockerfile and this setup have the same contents
-function setup() {
+setup() {
     log "SETUP"
     $update && apt-get -y upgrade
     # setup for snap installation
@@ -323,7 +341,7 @@ function setup() {
 # Main
 # ****************************************************
 # ****************************************************
-function main() {
+main() {
     log "Here we go!!"
     setup
 

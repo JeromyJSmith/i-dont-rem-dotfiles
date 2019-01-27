@@ -74,7 +74,7 @@ set statusline+=%w\
 set statusline+=%p%%\ \ %l:%c\ \ 
 "set statusline=\ %{HasPaste()}%F%m%r%h\ %w\ \ CWD:\ %r%{getcwd()}%h\ \ \ %p%%\ %l:%c
 
-colorscheme peachpuff
+colorscheme koehler
 
 " Show matching brackets when text indicator over them
 set showmatch
@@ -97,6 +97,10 @@ set noswapfile
 
 set pastetoggle=<C-P>
 
+" ignore case when searching, use \C to do case sensitive (smartcase should
+" work if you start typing capitals
+set ignorecase
+set smartcase
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "  => Helper Functions

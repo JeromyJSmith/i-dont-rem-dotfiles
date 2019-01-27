@@ -1,3 +1,4 @@
+echo "using bashrc"
 # ~/.bashrc: executed by bash(1) for non-login shells.
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
@@ -118,3 +119,25 @@ export PATH=$PATH:~/intelFPGA_pro/18.1/modelsim_ase/bin
 export PATH=~/go/bin:$PATH
 # python user libs python -m site --user-base
 export PATH=~/.local/bin:$PATH
+
+# Android Studio stuff
+export ANDROID_SDK=/home/kevin/Android/Sdk
+
+
+# tabtab source for serverless package
+# uninstall by removing these lines or running `tabtab uninstall serverless`
+[ -f /home/kevin/go/src/github.com/I-Dont-Remember/deals-api/node_modules/tabtab/.completions/serverless.bash ] && . /home/kevin/go/src/github.com/I-Dont-Remember/deals-api/node_modules/tabtab/.completions/serverless.bash
+# tabtab source for sls package
+# uninstall by removing these lines or running `tabtab uninstall sls`
+[ -f /home/kevin/go/src/github.com/I-Dont-Remember/deals-api/node_modules/tabtab/.completions/sls.bash ] && . /home/kevin/go/src/github.com/I-Dont-Remember/deals-api/node_modules/tabtab/.completions/sls.bash
+
+export GOENV_ROOT="$HOME/.goenv"
+export PATH="$GOENV_ROOT/bin:$PATH"
+eval "$(goenv init -)"
+
+# If you run into module errors, it means you don't have all dependencies for that Python version
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$PYENV_ROOT/bin:$PATH"
+if command -v pyenv 1>/dev/null 2>&1; then
+    eval "$(pyenv init -)"
+fi

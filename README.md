@@ -9,7 +9,7 @@ I can store everything important about my systems in a single repo.
 -   Clone under `$HOME`, to have `$HOME/dotfiles`
 -   Run the install script (_With anything as arguments, if no args it defaults to running the mock version for safety_) and you're all set!
 
-## Laptop configuration
+## All Computer Setup
 
 Everything under `configuration/`. See README in directory for more details.
 

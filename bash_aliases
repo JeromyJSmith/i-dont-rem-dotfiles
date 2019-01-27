@@ -196,7 +196,9 @@ alias weather='curl wttr.in'
 alias vpn='sudo openconnect --authgroup COMP_SCI_SPLIT dept-ra-cssc.vpn.wisc.edu'
 alias myip='curl https://wtfismyip.com/json'
 featurebranch() {
-name=$1
-[ -z "$name" ] && return 1
-git checkout master && git pull && git checkout -b "${name}"
+    name=$1
+    [ -z "$name" ] && return 1
+    git checkout master && git pull && git checkout -b "${name}"
 }
+alias lua='lua5.3'
+
