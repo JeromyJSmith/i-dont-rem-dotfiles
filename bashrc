@@ -107,7 +107,7 @@ export PATH=$HOME/bin:$PATH
 
 # Prompt, use http://bashrcgenerator.com/ for easy generation
 # Original \h:\W \u\$
-export PS1="\[\033[38;5;11m\]\w\[$(tput sgr0)\]\[\033[38;5;15m\] \[$(tput sgr0)\]\[\033[38;5;11m\][\[$(tput sgr0)\]\[\033[38;5;7m\]\$?\[$(tput sgr0)\]\[\033[38;5;11m\]]>\[$(tput sgr0)\]"
+export PS1="\[\033[38;5;11m\]\w\[$(tput sgr0)\]\[\033[38;5;15m\] \[$(tput sgr0)\]\[\033[38;5;11m\][\[$(tput sgr0)\]\[\033[38;5;7m\]\$?\[$(tput sgr0)\]\[\033[38;5;11m\]]▶ \[$(tput sgr0)\]"
 export CLICOLOR=1
 
 export NVM_DIR="$HOME/.nvm"
@@ -136,8 +136,12 @@ export PATH="$GOENV_ROOT/bin:$PATH"
 eval "$(goenv init -)"
 
 # If you run into module errors, it means you don't have all dependencies for that Python version
+# Check the pyenv wiki for suggested packages
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
 if command -v pyenv 1>/dev/null 2>&1; then
     eval "$(pyenv init -)"
 fi
+# Setup section that divides based on OS
+# https://stackoverflow.com/questions/394230/how-to-detect-the-os-from-a-bash-script
+

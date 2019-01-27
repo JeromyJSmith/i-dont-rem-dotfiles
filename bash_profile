@@ -21,4 +21,8 @@ fi
 export PATH="/usr/local/opt/mongodb@3.4/bin:$PATH"
 
 # Virtualenv on Mac
-export PATH="$PATH:~/Library/Python"
+export PATH="$PATH:~/Library/Python/3.6/bin"
+
+if command -v pyenv 1>/dev/null 2>&1; then
+    eval "$(pyenv init -)"
+fi
