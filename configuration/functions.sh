@@ -223,6 +223,12 @@ install-vpn() {
 }
 
 # @root
+install-zaproxy() {
+    ilog "OWASP Zap"
+    $si zaproxy --classic
+}
+
+# @root
 install-dev-packages() {
     #   shelcheck - to make us not suck at Bash -  in future look into https://github.com/mvdan/sh formatters
     #   grip - markdown preview
@@ -355,6 +361,7 @@ main() {
     install-node
     install-go
     install-react-native
+    install-zaproxy
     install-dev-packages
 
 # misc

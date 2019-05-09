@@ -1,0 +1,158 @@
+
+# Package names are different per distro,
+# so be sure to verify these work if copy/pasting this!
+default_ubuntu_packages:
+  - adobe-flashplugin
+  - cifs-utils
+  - curl
+  - firefox
+  - git
+  - libreoffice
+  - libswitch-perl # required for ipUsage.pl
+  - lsof
+  - meld
+  - ncdu
+  - nmap
+  - okular
+  - pidgin
+  - pidgin-data
+  - python3-pip
+  - rdesktop
+  - shutter
+  - smbclient # needed for printing
+  - strace
+  - subversion
+  - sysstat
+  - tcpdump
+  - tmux
+  - rar
+  - unrar
+  - unzip
+  - vim
+  - virt-manager
+  - vlc
+  - wget
+  - whois
+  - vim-gtk
+  - zenity
+  - p7zip-full
+
+default_remove_ubuntu_packages:
+  - aisleriot
+  - drkonqi-pk-debug-installer
+  - duplicity
+  - empathy
+  - empathy-common
+  - evolution
+  - evolution-plugins
+  - flashplugin-installer
+  - gdbserver
+  - gnome-calendar
+  - gnome-contacts
+  - gnome-documents
+  - gnome-mahjongg
+  - gnome-maps
+  - gnome-mines
+  - gnome-music
+  - gnome-orca
+  - gnome-photos
+  - gnome-photos
+  - gnome-sudoku
+  - gnome-weather
+  - kwalletmanager
+  - libpam-kwallet5
+  - libpowerdevilcore2
+  - libpowerdevilui5
+  - mlocate
+  - openvpn
+  - pam-kwallet-init
+  - powerdevil
+  - powerdevil-data
+  - rhythmbox
+  - rhythmbox-data
+  - rhythmbox-plugin-magnatune
+  - rhythmbox-plugin-zeitgeist
+  - rhythmbox-plugins
+  - snap-confine
+  - snapd
+  - snapd-login-service
+  - snmpd
+  - telepathy-gabble
+  - telepathy-haze
+  - telepathy-idle
+  - telepathy-logger
+  - telepathy-salut
+  - transmission-common
+  - transmission-gtk
+
+default_blacklist_ubuntu_packages:
+  - account-plugin-google
+  - apport
+  - apport-gtk
+  - apport-symptoms
+  - avahi-autoipd
+  - avahi-daemon
+  - avahi-utils
+  - bluedevil
+  - bluez
+  - bluez-cups
+  - bluez-obexd
+  - cheese
+  - chromium-browser
+  - cinnamon-desktop-environment
+  - cups-browsed
+  - deja-dup
+  - deja-dup-backend-cloudfiles
+  - deja-dup-backend-s3
+  - dleyna-renderer
+  - dleyna-server
+  - edubuntu-desktop
+  - gnome-bluetooth
+  - gnome-online-accounts
+  - gnome-online-miners
+  - kdeconnect
+  - kubuntu-desktop
+  - kubuntu-desktop-trinity
+  - libaccount-plugin-google
+  - libavahi-core7
+  - lubuntu-desktop
+  - lumina-desktop
+  - mate-desktop
+  - mcp-account-manager-goa
+  - modemmanager
+  - mythbuntu-desktop
+  - network-manager-pptp-gnome
+  - network-manager_pptp
+  - ppp
+  - pptp-linux
+  - pulseaudio-module-bluetooth
+  - razorqt-desktop
+  - ros-desktop
+  - ros-desktop-full
+  - ubuntu-desktop
+  - ubuntu-mate-desktop
+  - ubuntu-pocket-desktop
+  - ubuntukylin-desktop
+  - ubuntustudio-desktop
+  - whoopsie
+ - xubuntu-desktop
++
++https://github.com/spotify/docker-gc
++https://semaphoreci.com/community/tutorials/testing-ansible-roles-on-multiple-operating-systems-with-docker-and-semaphore
++
++https://docs.ansible.com/ansible/2.4/playbooks_reuse_roles.html#using-roles
++  - Use import role to still keep things structured like dev-tools/vscode dev-tools/spotify while keeping them as roles instead
++    of tasks we have to write and not be able to maintain
+
+
+Possible Inclusions:
+- bleachbit
+- synaptic
+- crashplan
+- genymotion android emulator
+- bittorrent
+- WINE
+- recordmydesktop
+
+- Doesn't need to be the same, but every laptop needs a system monitor somewhere
+

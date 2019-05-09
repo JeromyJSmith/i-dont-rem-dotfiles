@@ -38,4 +38,8 @@ Software:
     - Corona
     - Docker
     - Windows Ubuntu/Bash Subsystem
+    - OWASP ZAP
+        - Java 8+ (Make sure to download correct version of Java, there is a web only version that is tricky)
+    - Wireshark
+
 

@@ -144,7 +144,7 @@ alias gc='git commit'
 alias gco='git checkout'
 alias ga='git add'
 alias gb='git branch'
-
+alias mergepush='git checkout master; git merge develop; git push; git checkout develop'
 
 #==========================================================
 # No Obvious Group (Yet)

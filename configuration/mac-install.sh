@@ -9,6 +9,7 @@ function failed() {
 }
 
 # idempotent brew install
+# TODO: this will fail if program name is different than install name
 function bi() {
     item=$1
     if [ -z "$item" ]; then

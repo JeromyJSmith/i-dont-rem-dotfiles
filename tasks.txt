@@ -1,0 +1,23 @@
+- laptop configuration
+    - Linux
+        - Finish compiling list of software
+        - Flesh out installation procedure for all functions
+        - setup tests to be more automated
+            - Key feature will be ability to fetch all functions from file,
+                https://superuser.com/questions/1111219/can-i-get-all-functions-in-a-script-file-using-bash
+                https://stackoverflow.com/questions/2630812/get-a-list-of-function-names-in-a-shell-script
+                - seems like using grep and some parsing is best option
+    - Mac
+        - Finish compiling list of software
+        - Setup tests
+- update install script to be idempotent
+- Setup travis ci for testing of laptop configuration and shell scripts
+- write tests for our scripts
+- setup Vim plugins we like
+- setup tmux plugins we like & any configuration we use
+
+
+# Notes and Links
+- https://github.com/dylanaraps/pure-bash-bible#cycle-through-an-array
+
+- save ~/.config/ which has important stuff

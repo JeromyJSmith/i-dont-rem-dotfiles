@@ -134,6 +134,8 @@ export ANDROID_SDK=/home/kevin/Android/Sdk
 export GOENV_ROOT="$HOME/.goenv"
 export PATH="$GOENV_ROOT/bin:$PATH"
 eval "$(goenv init -)"
+export GOPATH="$HOME/go"
+export PATH="$PATH:$GOPATH/bin"
 
 # If you run into module errors, it means you don't have all dependencies for that Python version
 # Check the pyenv wiki for suggested packages
@@ -145,3 +147,7 @@ fi
 # Setup section that divides based on OS
 # https://stackoverflow.com/questions/394230/how-to-detect-the-os-from-a-bash-script
 
+
+# tabtab source for slss package
+# uninstall by removing these lines or running `tabtab uninstall slss`
+[ -f /home/kevin/.nvm/versions/node/v8.10.0/lib/node_modules/serverless/node_modules/tabtab/.completions/slss.bash ] && . /home/kevin/.nvm/versions/node/v8.10.0/lib/node_modules/serverless/node_modules/tabtab/.completions/slss.bash
