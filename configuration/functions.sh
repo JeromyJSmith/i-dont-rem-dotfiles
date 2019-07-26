@@ -84,6 +84,7 @@ install-browser-extensions() {
     # privacy badger?
     # THIS NEEDS TO BE EXPANDED AND MADE CONSISTENT ACROSS BROWSERS
     # TODO: have one browser that's full of shopping extensions and that's the only thing it gets used for
+    echo "installing browser extensions"
 }
 
 # @root

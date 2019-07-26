@@ -1,0 +1,52 @@
+if [ -f ~/.bash_aliases_linux ]; then
+    . ~/.bash_aliases_linux
+fi
+
+# enable programmable completion features (you don't need to enable
+# this, if it's already enabled in /etc/bash.bashrc and /etc/profile
+# sources /etc/bash.bashrc).
+if ! shopt -oq posix; then
+  if [ -f /usr/share/bash-completion/bash_completion ]; then
+    . /usr/share/bash-completion/bash_completion
+  elif [ -f /etc/bash_completion ]; then
+    . /etc/bash_completion
+  fi
+fi
+
+# Serverless
+# tabtab source for serverless package
+# uninstall by removing these lines or running `tabtab uninstall serverless`
+[ -f /home/kevin/go/src/github.com/I-Dont-Remember/deals-api/node_modules/tabtab/.completions/serverless.bash ] && . /home/kevin/go/src/github.com/I-Dont-Remember/deals-api/node_modules/tabtab/.completions/serverless.bash
+# tabtab source for sls package
+# uninstall by removing these lines or running `tabtab uninstall sls`
+[ -f /home/kevin/go/src/github.com/I-Dont-Remember/deals-api/node_modules/tabtab/.completions/sls.bash ] && . /home/kevin/go/src/github.com/I-Dont-Remember/deals-api/node_modules/tabtab/.completions/sls.bash
+# tabtab source for slss package
+# uninstall by removing these lines or running `tabtab uninstall slss`
+[ -f /home/kevin/.nvm/versions/node/v8.10.0/lib/node_modules/serverless/node_modules/tabtab/.completions/slss.bash ] && . /home/kevin/.nvm/versions/node/v8.10.0/lib/node_modules/serverless/node_modules/tabtab/.completions/slss.bash
+
+# Go
+export GOENV_ROOT="$HOME/.goenv"
+export PATH="$GOENV_ROOT/bin:$PATH"
+eval "$(goenv init -)"
+export GOPATH="$HOME/go"
+export PATH="$PATH:$GOPATH/bin"
+
+# Python
+# If you run into module errors, it means you don't have all dependencies for that Python version
+# Check the pyenv wiki for suggested packages
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$PYENV_ROOT/bin:$PATH"
+if command -v pyenv 1>/dev/null 2>&1; then
+    eval "$(pyenv init -)"
+fi
+
+# Node
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+
+####################
+# Exports
+####################
+export ANDROID_SDK=/home/kevin/Android/Sdk

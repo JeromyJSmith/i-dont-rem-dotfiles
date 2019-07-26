@@ -1,6 +1,22 @@
+" A good example https://dougblack.io/words/a-good-vimrc.html
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Text
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" turn on syntax processing
+syntax enable
+
+"=====[ highlight trailing whitespace in red ]================
+" From Zach's vimrc at XES
+"have this highlighting not appear whilst you are typing in insert mode
+"have the highlighting of whitespace apply when you open new buffers
+highlight ExtraWhitespace ctermbg=red guibg=red
+match ExtraWhitespace /\s\+$/
+autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
+autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
+autocmd InsertLeave * match ExtraWhitespace /\s\+$/
+autocmd BufWinLeave * call clearmatches()
+
 " Whitespace
 match ErrorMsg '\s\+$' 
 
@@ -62,11 +78,9 @@ au BufEnter * hi statusline guibg=DarkGrey ctermfg=8 guifg=Black ctermbg=15
 au InsertEnter * call InsertStatuslineColor(v:insertmode)
 au InsertLeave * hi statusline guibg=DarkGrey ctermfg=8 guifg=Black ctermbg=15
 
-
+" TODO: good alternative for the future
 set statusline=
 set statusline+=%{HasPaste()}
-" TODO: find a new one of these, this one causes issues with random characters https://github.com/fatih/vim-go/issues/71
-"set statusline+=%{StatuslineGit()}
 set statusline+=%F%m%r%h
 " Switch to right side
 set statusline+=%=
@@ -76,13 +90,33 @@ set statusline+=%p%%\ \ %l:%c\ \
 
 colorscheme koehler
 
-" Show matching brackets when text indicator over them
+" Show matching brackets [{}] when text indicator over them
 set showmatch
 
-"Line numbers
+" Line numbers
 set number
 set relativenumber
 
+" redraw less so it's faster
+set lazyredraw
+
+" visual autocomplete when using menu
+set wildmenu
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Search
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" ignore case when searching, use \C to do case sensitive (smartcase should
+" work if you start typing capitals
+set ignorecase
+set smartcase
+
+" search as you enter
+set incsearch
+" highlight matches
+set hlsearch
+" turn off search highlight with Ctrl + space
+nnoremap <C-space> :nohlsearch<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Misc
@@ -95,12 +129,8 @@ set nobackup
 set nowb
 set noswapfile
 
+" toggle paste mode on and off
 set pastetoggle=<C-P>
-
-" ignore case when searching, use \C to do case sensitive (smartcase should
-" work if you start typing capitals
-set ignorecase
-set smartcase
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "  => Helper Functions
@@ -111,14 +141,5 @@ function! HasPaste()
         return 'PASTE MODE  '
     endif
     return ''
-endfunction
-
-function! GitBranch()
-  return system("git rev-parse --abbrev-ref HEAD 2>/dev/null | tr -d '\n'")
-endfunction
-
-function! StatuslineGit()
-  let l:branchname = GitBranch()
-  return strlen(l:branchname) > 0?'  '.l:branchname.' ':''
 endfunction
 

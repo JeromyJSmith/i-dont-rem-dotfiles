@@ -3,34 +3,18 @@ echo "using bashrc"
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
 
-# If not running interactively, don't do anything
-case $- in
-    *i*) ;;
-      *) return;;
-esac
+#######################################################
+#
+# Configuration for all machines here
+#
+#######################################################
+# Add personal scripts directory
+export PATH=$HOME/bin:$PATH
 
-# don't put duplicate lines or lines starting with space in the history.
-# See bash(1) for more options
-HISTCONTROL=ignoreboth
-
-# append to the history file, don't overwrite it
-shopt -s histappend
-
-# for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
-HISTSIZE=1000
-HISTFILESIZE=2000
-
-# check the window size after each command and, if necessary,
-# update the values of LINES and COLUMNS.
-shopt -s checkwinsize
-
-# If set, the pattern "**" used in a pathname expansion context will
-# match all files and zero or more directories and subdirectories.
-#shopt -s globstar
-
-# make less more friendly for non-text input files, see lesspipe(1)
-[ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
-
+################
+# Prompt Stuff
+# TODO: have to go through here and eliminate pieces that overlap each other
+################
 # set variable identifying the chroot you work in (used in the prompt below)
 if [ -z "${debian_chroot:-}" ] && [ -r /etc/debian_chroot ]; then
     debian_chroot=$(cat /etc/debian_chroot)
@@ -73,81 +57,113 @@ xterm*|rxvt*)
     ;;
 esac
 
-# enable color support of ls and also add handy aliases
-if [ -x /usr/bin/dircolors ]; then
-    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
-    alias ls='ls --color=auto'
-    #alias dir='dir --color=auto'
-    #alias vdir='vdir --color=auto'
+# Git Aware Prompt - shamelessly stolen from https://github.com/jimeh/git-aware-prompt
+find_git_branch() {
+  # Based on: http://stackoverflow.com/a/13003854/170413
+  local branch
+  if branch=$(git rev-parse --abbrev-ref HEAD 2> /dev/null); then
+    if [[ "$branch" == "HEAD" ]]; then
+      branch='detached*'
+    fi
+    git_branch="($branch)"
+  else
+    git_branch=""
+  fi
+}
 
-    alias grep='grep --color=auto'
-    alias fgrep='fgrep --color=auto'
-    alias egrep='egrep --color=auto'
-fi
+find_git_dirty() {
+  local status=$(git status --porcelain 2> /dev/null)
+  if [[ "$status" != "" ]]; then
+    git_dirty='*'
+  else
+    git_dirty=''
+  fi
+}
+PROMPT_COMMAND="find_git_branch; find_git_dirty; $PROMPT_COMMAND"
 
-# colored GCC warnings and errors
-#export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
+# use http://bashrcgenerator.com/ for easy generation
+# Original \h:\W \u\$
+export PS1="\[\033[38;5;11m\]\w \$git_branch\$git_dirty\[$(tput sgr0)\]\[\033[38;5;15m\] \[$(tput sgr0)\]\[\033[38;5;11m\][\[$(tput sgr0)\]\[\033[38;5;7m\]\$?\[$(tput sgr0)\]\[\033[38;5;11m\]]▶ \[$(tput sgr0)\]"
+export CLICOLOR=1
+
+
+
+###################
+# History Stuff
+###################
+# don't put duplicate lines or lines starting with space in the history.
+# See bash(1) for more options
+HISTCONTROL=ignoreboth
+# append to the history file, don't overwrite it
+shopt -s histappend
+# for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
+HISTSIZE=1000
+HISTFILESIZE=2000
+
+# check the window size after each command and, if necessary,
+# update the values of LINES and COLUMNS.
+shopt -s checkwinsize
+
+# If set, the pattern "**" used in a pathname expansion context will
+# match all files and zero or more directories and subdirectories.
+#shopt -s globstar
+
+# make less more friendly for non-text input files, see lesspipe(1)
+[ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
 
 if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
 fi
 
-# enable programmable completion features (you don't need to enable
-# this, if it's already enabled in /etc/bash.bashrc and /etc/profile
-# sources /etc/bash.bashrc).
-if ! shopt -oq posix; then
-  if [ -f /usr/share/bash-completion/bash_completion ]; then
-    . /usr/share/bash-completion/bash_completion
-  elif [ -f /etc/bash_completion ]; then
-    . /etc/bash_completion
-  fi
-fi
+# colored GCC warnings and errors
+#export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 
-export PATH=$HOME/bin:$PATH
-
-# Prompt, use http://bashrcgenerator.com/ for easy generation
-# Original \h:\W \u\$
-export PS1="\[\033[38;5;11m\]\w\[$(tput sgr0)\]\[\033[38;5;15m\] \[$(tput sgr0)\]\[\033[38;5;11m\][\[$(tput sgr0)\]\[\033[38;5;7m\]\$?\[$(tput sgr0)\]\[\033[38;5;11m\]]▶ \[$(tput sgr0)\]"
-export CLICOLOR=1
-
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
-# access modelsim in linux yah boiii
-export PATH=$PATH:~/intelFPGA_pro/18.1/modelsim_ase/bin
-export PATH=~/go/bin:$PATH
-# python user libs python -m site --user-base
+# Access Python user libs, `python -m site --user-base` to find
 export PATH=~/.local/bin:$PATH
 
-# Android Studio stuff
-export ANDROID_SDK=/home/kevin/Android/Sdk
-
-
-# tabtab source for serverless package
-# uninstall by removing these lines or running `tabtab uninstall serverless`
-[ -f /home/kevin/go/src/github.com/I-Dont-Remember/deals-api/node_modules/tabtab/.completions/serverless.bash ] && . /home/kevin/go/src/github.com/I-Dont-Remember/deals-api/node_modules/tabtab/.completions/serverless.bash
-# tabtab source for sls package
-# uninstall by removing these lines or running `tabtab uninstall sls`
-[ -f /home/kevin/go/src/github.com/I-Dont-Remember/deals-api/node_modules/tabtab/.completions/sls.bash ] && . /home/kevin/go/src/github.com/I-Dont-Remember/deals-api/node_modules/tabtab/.completions/sls.bash
-
-export GOENV_ROOT="$HOME/.goenv"
-export PATH="$GOENV_ROOT/bin:$PATH"
-eval "$(goenv init -)"
-export GOPATH="$HOME/go"
-export PATH="$PATH:$GOPATH/bin"
-
-# If you run into module errors, it means you don't have all dependencies for that Python version
-# Check the pyenv wiki for suggested packages
-export PYENV_ROOT="$HOME/.pyenv"
-export PATH="$PYENV_ROOT/bin:$PATH"
-if command -v pyenv 1>/dev/null 2>&1; then
-    eval "$(pyenv init -)"
-fi
 # Setup section that divides based on OS
 # https://stackoverflow.com/questions/394230/how-to-detect-the-os-from-a-bash-script
 
 
-# tabtab source for slss package
-# uninstall by removing these lines or running `tabtab uninstall slss`
-[ -f /home/kevin/.nvm/versions/node/v8.10.0/lib/node_modules/serverless/node_modules/tabtab/.completions/slss.bash ] && . /home/kevin/.nvm/versions/node/v8.10.0/lib/node_modules/serverless/node_modules/tabtab/.completions/slss.bash
+
+#######################################################
+#
+# Load OS specific files
+#
+#######################################################
+case $OSTYPE in
+    solaris*)
+        echo "You have Solaris??"
+    ;;
+    darwin*)
+        if [ -f ~/.bashrc_macos ]; then
+            . ~/.bashrc_macos
+        fi
+    ;;
+    linux*)
+        if [ -f ~/.bashrc_linux ]; then
+            . ~/.bashrc_linux
+        fi
+    ;;
+    bsd*)
+        echo "You have BSD??"
+    ;;
+    *)
+    echo "Unknown OSTYPE $OSTYPE in bashrc check"
+    ;;
+esac
+
+
+
+
+# If not running interactively, don't do anything
+case $- in
+    *i*) ;;
+      *) return;;
+esac
+
+####################
+#
+# Fin
+#
+####################

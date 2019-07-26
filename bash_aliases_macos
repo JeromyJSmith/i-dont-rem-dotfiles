@@ -1,0 +1,9 @@
+##################################################
+#
+# Mac Specific Aliases
+#
+##################################################
+
+alias macinfo="system_profiler SPSoftwareDataType"
+alias localstack-up="TMPDIR=/private$TMPDIR docker-compose up"
+alias local-compose="TMPDIR=/private$TMPDIR docker-compose"

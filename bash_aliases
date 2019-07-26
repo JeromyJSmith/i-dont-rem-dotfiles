@@ -1,3 +1,16 @@
+# enable color support of ls and also add handy aliases
+if [ -x /usr/bin/dircolors ]; then
+    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+    # -F adds asterik to executable files
+    alias ls='ls --color=auto -F'
+    alias dir='dir --color=auto'
+    alias vdir='vdir --color=auto'
+
+    alias grep='grep --color=auto'
+    alias fgrep='fgrep --color=auto'
+    alias egrep='egrep --color=auto'
+fi
+
 #=======================================================
 # Aliases file
 #=======================================================
@@ -9,28 +22,13 @@ alias reloadprofile="source ~/.bash_profile"
 #=======================================================
 # Services/ System info
 #=======================================================
-# # TODO: Review these since they are rarely used # # # # #
-# alias start='sudo systemctl start'
-# alias stop='sudo systemctl stop'
-# alias status='sudo systemctl status'
-# alias restart='sudo systemctl restart'
-# alias reload='sudo systemctl reload'
-# alias reload-or-restart='sudo systemctl reload-or-restart'
-# alias boot-enable='sudo systemctl enable'
-# alias boot-disable='sudo systemctl disable'
-# alias is-enabled='sudo sytemctl is-enabled'
-# alias is-active='sudo systemctl is-active'
-# 
-# alias python='echo "## alias ##"; python3'
-# alias pip='echo "## alias ##"; pip3'
-# alias diskspace='df -P -khl'
-# alias fstypes='df -Th'
-# alias rootdiskspace='sudo du -hsx /* | sort -rh | head -n 40'
-# alias ports="netstat -tulanp"
-# alias dirusage="du -ch | grep total"
-# alias totalusage="df -hl --total | grep total"
-# alias showpermssions='find . -maxdepth 1 -printf "%m:%f\n"'
-# alias mykde_desktop_dissapeared="killall plasmashell; kstart plasmashell"
+alias diskspace='df -P -khl'
+alias fstypes='df -Th'
+alias rootdiskspace='sudo du -hsx /* | sort -rh | head -n 40'
+alias ports="netstat -tulanp"
+alias dirusage="du -ch | grep total"
+alias totalusage="df -hl --total | grep total"
+alias showpermssions='find . -maxdepth 1 -printf "%m:%f\n"'
 
 #=======================================================
 # Movement/ Creation
@@ -112,21 +110,16 @@ append() {
 alias cl='clear'
 alias histg='history | grep'
 alias sudoprev='sudo $(history -p !!)'
+# Put asterik on executable files
 alias ld='ls -ld .??*'
 alias llh='ls -lh'
 alias lls='ls -ls'
 alias lsh='ls -sh'
-alias ll='ls -alF'
+alias ll='ls -al'
 alias la='ls -A'
-alias l='ls -CF'
+alias l='ls -C'
 nullify () {
     "$@" >& /dev/null
-}
-#==========================================================
-# Virtualenv
-#==========================================================
-startenv() {
-  . $1/bin/activate
 }
 
 #==========================================================
@@ -149,10 +142,6 @@ alias mergepush='git checkout master; git merge develop; git push; git checkout 
 #==========================================================
 # No Obvious Group (Yet)
 #==========================================================
-buildserve() {
-  bundle exec jekyll build && bundle exec jekyll serve
-}
-
 dockip() {
   docker inspect --format '{{ .NetworkSettings.IPAddress }}' "$@"
 }
@@ -166,39 +155,19 @@ function lsp {
   ls -AHl $LLS_PATH | awk "{k=0;for(i=0;i<=8;i++)k+=((substr(\$1,i+2,1)~/[rwx]/) \
                                 *2^(8-i));if(k)printf(\"%0o \",k);print}"
 }
-alias xopen='xdg-open'
 #TODO
 # which vs whereis, which is better but needs easier to remember name
 # https://github.com/paulirish/dotfiles/blob/master/.aliases
 # When sudo can't find command
 alias lostsudo='sudo -E env "PATH=$PATH"#'
-makepopup() {
-  if [ "$1" == "-h" ]; then
-	echo "makepopup [ 'the message'] [duration (seconds)]"
-  else
-    /usr/bin/kdialog --title 'Your message' --passivepopup "$1" "$2"
-  fi
-}
 alias viewtar='echo "**Use less if you need searching **" && tar -tvf'
-alias cminicom='minicom -c on'
 alias v='vim'
-alias cminiusb='minicom -c on -D /dev/ttyUSB0'
-alias rundocker='docker run --rm -it'
-# ls -F (append indicator to entries)
-alias macinfo="system_profiler SPSoftwareDataType"
-alias localstack-up="TMPDIR=/private$TMPDIR docker-compose up"
-alias local-compose="TMPDIR=/private$TMPDIR docker-compose"
-# Alert for long running commands.  Use like so:
-#   sleep 10; alert
-alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
 alias wtfismyip='curl https://wtfismyip.com/json'
 alias weather='curl wttr.in'
-alias vpn='sudo openconnect --authgroup COMP_SCI_SPLIT dept-ra-cssc.vpn.wisc.edu'
 alias myip='curl https://wtfismyip.com/json'
 featurebranch() {
     name=$1
     [ -z "$name" ] && return 1
     git checkout master && git pull && git checkout -b "${name}"
 }
-alias lua='lua5.3'
 

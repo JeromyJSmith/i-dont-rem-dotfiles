@@ -1,0 +1,13 @@
+if [ -f ~/.bash_aliases_macos ]; then
+    . ~/.bash_aliases_macos
+fi
+
+# Enable bash_completion (Install by: brew install bash-completion)
+# Homebrew's own bash completion script: /usr/local/etc/bash_completion.d
+if command -v brew && [ -f $(brew --prefix)/etc/bash_completion ]; then
+      . $(brew --prefix)/etc/bash_completion
+fi
+
+####################
+# Exports
+####################
