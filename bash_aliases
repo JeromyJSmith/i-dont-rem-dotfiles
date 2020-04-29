@@ -1,3 +1,4 @@
+
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
@@ -170,4 +171,10 @@ featurebranch() {
     [ -z "$name" ] && return 1
     git checkout master && git pull && git checkout -b "${name}"
 }
+
+
+# Happybara
+alias slsdev='sls --aws-profile happybara-dev'
+alias slsprod='sls --aws-profile happybara-prod'
+alias slspp='sls --aws-profile happybara-prod --stage prod'
 

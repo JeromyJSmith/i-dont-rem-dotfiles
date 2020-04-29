@@ -11,12 +11,24 @@
 # or similar, not an issue with the script
 
 . ~/dotfiles/boilerplate/bash_functions.sh
-. ~/dotfiles/log4bash/log4bash.sh
+#. ~/dotfiles/log4bash/log4bash.sh
 
 echo_blue() {
 	echo -en "\\033[0;36m"
 	echo "$1"
 	echo -en "\\033[0m"
+}
+
+log_error() {
+    echo "!!_!!_ $1 _!!_!!"
+}
+
+log_warning() {
+    echo "[!] $1"
+}
+
+log_success() {
+    echo "[*] $1"
 }
 
 check_git_repo() {
