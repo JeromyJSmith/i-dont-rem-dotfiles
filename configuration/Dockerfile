@@ -7,7 +7,7 @@
 # RUN apt-get update && apt-get install -y curl apt-utils gnupg apt-transport-https ca-certificates \
 #     && apt-get -y upgrade
 
-FROM ubuntu:18.04
+FROM ubuntu:20.04
 
 # TODO: now that we are using pure bash scripts, should we do the passwordless sudo user
 # to better mock a fresh install?

@@ -3,7 +3,7 @@
 single-template := test-single-template.sh
 single-test := test-single-function.sh
 function := install-firefox
-image := 18.04-configuration
+image := 20.04-configuration
 full-test := linux-full.sh
 post-install-tasks := post-instal-tasks.sh
 

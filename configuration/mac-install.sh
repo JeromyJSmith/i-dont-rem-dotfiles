@@ -76,6 +76,7 @@ function main() {
     echo "[*] setting up Pyenv & Pipenv..."
     pyenv install 3.7.1
     pyenv global 3.7.1
+    # setup pipx, pipenv/poetry
     
 
     # Node
@@ -87,7 +88,7 @@ function main() {
 
     # 
 # misc
-    bci "alfred"
+    # bci "alfred" haven't found we really use this
     bci "virtualbox"
     bci "vagrant"
     bci "vagrant-manager"

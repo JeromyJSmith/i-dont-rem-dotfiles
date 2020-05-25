@@ -53,6 +53,7 @@ install-arduino() {
 
 # @root
 install-dropbox() {
+    # https://www.dropbox.com/install-linux
     ilog "Dropbox"
 }
 
@@ -88,9 +89,9 @@ install-browser-extensions() {
 }
 
 # @root
-# install-chrome() {
-#     apt install google-chrome-stable
-# }
+install-chrome() {
+    apt install google-chrome-stable
+}
 
 # @root
 install-firefox() {
@@ -192,12 +193,14 @@ install-go() {
 install-python() {
     ilog "Python"
     # install pyenv
-    # install pipenv
+    # install latest python versions
 }
 
 # @user
-finish-python() {
+python-tools() {
     log "Finish Python setup"
+    # install pipx for cli tools in pip
+    # install pipenv/poetry
     # install any global pip tools (i.e. aws cli)
 }
 
@@ -207,12 +210,20 @@ install-node() {
     # https://github.com/creationix/nvm
     # install nvm
     # install a newish version of node
+    # TODO: have to source profile to get us back?
+}
+
+node-tools() {
+    # install serverless cli 
+    log "Finish Node tools installation"
+    npm -g serverless
 }
 
 # @root
 install-java() {
     ilog "Java"
     # for the occasional time it is useful and learning other JVM languages
+    # get a newer version though, we have real old ones
 }
 
 # @root
@@ -231,13 +242,14 @@ install-zaproxy() {
 
 # @root
 install-dev-packages() {
-    #   shelcheck - to make us not suck at Bash -  in future look into https://github.com/mvdan/sh formatters
+    #   shellcheck - to make us not suck at Bash -  in future look into https://github.com/mvdan/sh formatters
     #   grip - markdown preview
     #   httpie - better than curl
     #   autojump - quickly move around command line
     #   yakuake - best tool ever, drop down command line
     #   zenity - graphical dialog boxes for shell scripts
     #   libncurses - for interesting graphical curses stuff
+    #   code - VS Code, our favorite text editor
     ilog "Dev packages"
     # TODO: set these up as arrays, so we can run tests against it easily?  a simple command -v would suffice
     $ai shellcheck \
@@ -253,8 +265,18 @@ install-dev-packages() {
         tcpdump \
         zenity \
         libncurses5-dev \
-        libncursesw5-dev
+        libncursesw5-dev \
+        code
 
+}
+
+install-jetbrains-toolbox() {
+    # https://www.jetbrains.com/toolbox-app/
+    ilog "Jetbrains ToolBox"
+    file_name="jetbrains-toolbox-1.17.6856.tar.gz"
+    targz_url="https://download.jetbrains.com/toolbox/${file_name}"
+    wget $targz_url -O "~/Downloads/$file_name"
+    # TODO: what do we do here?
 }
 
 # @root
@@ -274,8 +296,8 @@ install-misc-packages() {
     #   cowsay/figlet/sl - fun
     #   zip,etc. - getting everything extracted
     #   ncdu - understand where space is
-    #   wunderlisttux - desktop version of app we use
     #   recordmydesktop - captures video of a linux session
+    #   nordvpn - current VPN service we pay for
     #   TODO: gnome tweaks & extensions
     ilog "Misc packages"
     $ai meld \
@@ -296,9 +318,9 @@ install-misc-packages() {
         zip unzip tar rar unrar p7zip p7zip-full \
         make \
         gparted \
-        wunderlisttux \
         recordmydesktop \
-        gnome-tweak-tool
+        gnome-tweak-tool \
+        nordvpn
 
 # htop or glances? g is from pip https://nicolargo.github.io/glances/
 
@@ -352,17 +374,25 @@ main() {
     log "Here we go!!"
     setup
 
+    remove-default-packages
+
 # browsers
+    install-chromium
     install-chrome
     install-firefox
-    install-opera
+    # install-opera all in on firefox
+
+# Setup TickTick somehow
 
 # dev stuff
     install-python
+    python-tools
     install-node
+    node-tools
     install-go
-    install-react-native
+    # install-react-native we don't do app development really anymore
     install-zaproxy
+    install-jetbrains-toolbox
     install-dev-packages
 
 # misc
