@@ -177,4 +177,12 @@ featurebranch() {
 alias slsdev='sls --aws-profile happybara-dev'
 alias slsprod='sls --aws-profile happybara-prod'
 alias slspp='sls --aws-profile happybara-prod --stage prod'
+alias fb='git checkout feature/base'
+
+fdeploy() {
+    dir=$1
+    func=${2:-main}
+    echo "[*] building $dir-$func"
+    (cd $dir && slsdev deploy function -f $func)
+}
 

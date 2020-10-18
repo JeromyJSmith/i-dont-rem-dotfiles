@@ -34,12 +34,24 @@
 
 Software:
     - Firefox
+    - Chromium
     - Steam
-    - Corona
+    - Spotify
+    - Bitwarden
+    - NordVPN
+    - VSCode
+    - Dropbox
     - Docker
     - Windows Ubuntu/Bash Subsystem
     - OWASP ZAP
         - Java 8+ (Make sure to download correct version of Java, there is a web only version that is tricky)
     - Wireshark
-
-
+    - TickTick (Todo app)
+    - Rescuetime
+    - LibreOffice
+    - Slack (Happybara)
+    - Notion (Happybara)
+    - Gitkraken (Happybara)
+    - Intellij - Use the hub download rather than directly downloading
+    - Tutanota? emClient? Mailspring? Thunderbird? want an email client to bring our accounts together once we get them consolidated, need to get off of using our old UW email, switch accounts over.
+    -
