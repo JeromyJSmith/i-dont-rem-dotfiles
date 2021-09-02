@@ -10,3 +10,5 @@ if [ -f ~/.bashrc ]; then
 fi
 
 
+
+export PATH="$HOME/.poetry/bin:$PATH"

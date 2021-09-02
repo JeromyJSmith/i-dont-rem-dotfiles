@@ -39,3 +39,5 @@ export PATH=$PATH:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools
 # user installs of python tools
 export PATH=~/.local/bin:$PATH
 
+
+export PATH="$HOME/.poetry/bin:$PATH"

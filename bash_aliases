@@ -174,15 +174,28 @@ featurebranch() {
 
 
 # Happybara
-alias slsdev='sls --aws-profile happybara-dev'
-alias slsprod='sls --aws-profile happybara-prod'
-alias slspp='sls --aws-profile happybara-prod --stage prod'
+# deprecations - pain in my ass https://www.serverless.com/framework/docs/deprecations/#CLI_OPTIONS_BEFORE_COMMAND
+alias sls='node ~/work/happybara-io/happybara-central/node_modules/serverless/bin/serverless.js'
+sls_dev() {
+    echo "DEV args:" "$@"
+    sls "$@" --aws-profile 'happybara-dev'
+}
+
+sls_prod() {
+    echo "PROD args:" "$@"
+    read -p 'You sure you want to do that? [Enter/Ctrl+C to abort]' nuthin
+    sls "$@" --aws-profile 'happybara-prod' --stage 'prod'
+}
+
 alias fb='git checkout feature/base'
 
 fdeploy() {
     dir=$1
     func=${2:-main}
     echo "[*] building $dir-$func"
-    (cd $dir && slsdev deploy function -f $func)
+    (cd $dir && sls_dev deploy function -f $func)
 }
+
+alias upug='sudo apt-get update && sudo apt-get -y upgrade'
+alias export_env_file='source .env && export $(cut -d= -f1 .env)'
 
