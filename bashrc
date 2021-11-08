@@ -124,8 +124,9 @@ export PATH=~/.local/bin:$PATH
 # Setup section that divides based on OS
 # https://stackoverflow.com/questions/394230/how-to-detect-the-os-from-a-bash-script
 
-
-
+# always use VIM so i never have to see Nanos stupid face
+export VISUAL=vim
+export EDITOR="$VISUAL"
 #######################################################
 #
 # Load OS specific files
