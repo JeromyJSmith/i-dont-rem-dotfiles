@@ -10,6 +10,9 @@ echo "using bashrc"
 #######################################################
 # Add personal scripts directory
 export PATH=$HOME/bin:$PATH
+export PATH="$HOME/.poetry/bin:$PATH"
+# pipx tools
+export PATH="$HOME/.local/bin:$PATH"
 
 ################
 # Prompt Stuff

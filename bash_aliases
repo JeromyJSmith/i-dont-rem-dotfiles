@@ -34,8 +34,12 @@ alias showpermssions='find . -maxdepth 1 -printf "%m:%f\n"'
 #=======================================================
 # Movement/ Creation
 #=======================================================
-cs() {
+cds() {
   cd "$@" && ls
+}
+
+cdf() {
+    cd "$@" && git fetch
 }
 
 mkcd() {
@@ -111,6 +115,8 @@ append() {
 alias cl='clear'
 alias histg='history | grep'
 alias sudoprev='sudo $(history -p !!)'
+# add symbols to unique files like links
+alias ls='ls -F'
 # Put asterik on executable files
 alias ld='ls -ld .??*'
 alias llh='ls -lh'
@@ -138,7 +144,11 @@ alias gc='git commit'
 alias gco='git checkout'
 alias ga='git add'
 alias gb='git branch'
+alias gp='git push'
 alias mergepush='git checkout master; git merge develop; git push; git checkout develop'
+alias dev='git checkout develop && git pull'
+alias master='git checkout master && git pull'
+alias main='git checkout main && git pull'
 
 #==========================================================
 # No Obvious Group (Yet)
@@ -146,6 +156,12 @@ alias mergepush='git checkout master; git merge develop; git push; git checkout 
 dockip() {
   docker inspect --format '{{ .NetworkSettings.IPAddress }}' "$@"
 }
+alias docker-kill-all='docker kill $(docker ps -q)'
+# docker-remove-untagged --> docker rmi $(docker images | grep '^<none>' | awk '{print $3}')
+
+#==========================================================
+# No Obvious Group (Yet)
+#==========================================================
 
 alias npmglobal="npm list -g --depth=0"
 
@@ -198,4 +214,4 @@ fdeploy() {
 
 alias upug='sudo apt-get update && sudo apt-get -y upgrade'
 alias export_env_file='source .env && export $(cut -d= -f1 .env)'
-
+alias diff='echo "[*] adding -ay for better ux" && diff -ay'
