@@ -1,0 +1,3 @@
+# fix the freaking bell on windows
+# https://stackoverflow.com/a/44124913
+set bell-style none

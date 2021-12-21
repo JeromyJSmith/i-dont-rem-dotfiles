@@ -75,7 +75,7 @@ is_int() {
 mock=0
 dir=~/dotfiles
 olddir=~/old_dotfiles
-ignorefiles="README.md install_script.sh scripts scripts_deprecated log4bash.sh cheat-sheets configuration link-dotfiles.sh"
+ignorefiles="README.md install_script.sh scripts scripts_deprecated log4bash.sh cheat-sheets configuration link-dotfiles.sh spinners.sh"
 
 echo "__________________________________________"
 echo "Running install script for Kevin's dotfiles!"

@@ -143,3 +143,8 @@ function! HasPaste()
     return ''
 endfunction
 
+" Disable the freaking windows bell
+set visualbell
+set t_vb=
+
+
