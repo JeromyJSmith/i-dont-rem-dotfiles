@@ -75,7 +75,7 @@ is_int() {
 mock=0
 dir=~/dotfiles
 olddir=~/old_dotfiles
-ignorefiles="README.md install_script.sh scripts scripts_deprecated log4bash.sh cheat-sheets configuration"
+ignorefiles="README.md install_script.sh scripts scripts_deprecated log4bash.sh cheat-sheets configuration link-dotfiles.sh"
 
 echo "__________________________________________"
 echo "Running install script for Kevin's dotfiles!"
@@ -137,10 +137,11 @@ for entry in $dir/*; do
         echo "-> moving .$fname"
         mv ~/."$fname" $olddir
     fi
+
     if [[ $fname == "ssh-config" ]]; then
         echo "Creating symlink for .ssh/config"
         mkdir ~/.ssh/ || true
-        mv ~/.ssh/config $olddir/ssh-config
+        mv ~/.ssh/config $olddir
         ln -s ssh-config ~/.ssh/config
     else
         echo "-> create symlink for $fname"
