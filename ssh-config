@@ -1,6 +1,6 @@
 Host mrzero
 	Hostname mrzero.local
-	User kevin
+	User pi
 
 Host server
 	HostName server.local
