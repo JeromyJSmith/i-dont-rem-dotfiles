@@ -24,9 +24,12 @@ export PATH="$PATH:$GOPATH/bin"
 # Python
 # If you run into module errors, it means you don't have all dependencies for that Python version
 # Check the pyenv wiki for suggested packages
+# win11 issue https://github.com/pyenv/pyenv/issues/2026
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
 if command -v pyenv 1>/dev/null 2>&1; then
+    echo "pyenv init going.."
+    eval "$(pyenv init --path)"
     eval "$(pyenv init -)"
 fi
 
@@ -35,11 +38,6 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-
-# Ruby
-export PATH="$HOME/.rbenv/bin:$PATH"
-eval "$(rbenv init -)"
-export PATH="$HOME/.rbenv/plugins/ruby-build/bin:$PATH"
 
 
 ####################
