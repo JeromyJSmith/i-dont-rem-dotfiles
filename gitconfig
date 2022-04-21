@@ -5,6 +5,8 @@
 	ui = true
 [core]
 	editor = vim
+[branch]
+    sort = -committerdate
 [alias]
 	df = diff
 	di = diff

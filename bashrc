@@ -86,7 +86,7 @@ PROMPT_COMMAND="find_git_branch; find_git_dirty; $PROMPT_COMMAND"
 
 # use http://bashrcgenerator.com/ for easy generation
 # Original \h:\W \u\$
-export PS1="\[\033[38;5;11m\]\w \$git_branch\$git_dirty\[$(tput sgr0)\]\[\033[38;5;15m\] \[$(tput sgr0)\]\[\033[38;5;11m\][\[$(tput sgr0)\]\[\033[38;5;7m\]\$?\[$(tput sgr0)\]\[\033[38;5;11m\]]▶ \[$(tput sgr0)\]"
+export PS1="\[\033[38;5;11m\]\t:\w:\$git_branch\$git_dirty\[$(tput sgr0)\]\[\033[38;5;15m\] \[$(tput sgr0)\]\[\033[38;5;11m\][\[$(tput sgr0)\]\[\033[38;5;7m\]\$?\[$(tput sgr0)\]\[\033[38;5;11m\]]▶ \[$(tput sgr0)\]"
 export CLICOLOR=1
 
 
