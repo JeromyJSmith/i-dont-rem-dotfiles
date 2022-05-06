@@ -1,0 +1,8 @@
+! 2020-11-22 https://creditwise.capitalone.com
+creditwise.capitalone.com##.sim-btn.btn-success.btn-md.btn
+||innocuous.idontremember.workers.dev/akgdfdsaf/script.js
+! Hide the 'What's happening' sidebar on Twitter.com
+twitter.com##*[aria-label="Timeline: Trending now"]
+! Hide the 'Topics to follow' sidebar on Twitter.com
+twitter.com##*[aria-label="Timeline: "]
+
