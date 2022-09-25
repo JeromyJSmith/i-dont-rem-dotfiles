@@ -216,4 +216,5 @@ alias upug='sudo apt-get update && sudo apt-get -y upgrade'
 alias export_env_file='source .env && export $(cut -d= -f1 .env)'
 alias diff='echo "[*] adding -ay for better ux" && diff -ay'
 alias nordvpn-update='sh <(curl -sSf https://downloads.nordcdn.com/apps/linux/install.sh)'
+alias windows_wsl_clock_out_of_sync='sudo hwclock -s'
 
