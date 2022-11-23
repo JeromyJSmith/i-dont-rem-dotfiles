@@ -1,0 +1,5 @@
+echo "Using WSL extras"
+
+# for using with wslutilities https://github.com/wslutilities/wslu
+export BROWSER=wslview
+# can now run xdg-open https://google.com | file.txt | etc. interesting stuff
