@@ -15,10 +15,10 @@ fi
 #=======================================================
 # Aliases file
 #=======================================================
-alias showaliases="less $HOME/.bash_aliases"
-alias editaliases="vim $HOME/.bash_aliases"
+alias show_aliases="less $HOME/.bash_aliases"
+alias edit_aliases="vim $HOME/.bash_aliases"
 alias reloadrc="source ~/.bashrc"
-alias reloadprofile="source ~/.bash_profile"
+alias reload_profile="source ~/.bash_profile"
 
 #=======================================================
 # Services/ System info
@@ -216,6 +216,7 @@ alias upug='sudo apt-get update && sudo apt-get -y upgrade'
 alias export_env_file='source .env && export $(cut -d= -f1 .env)'
 alias diff='echo "[*] adding -ay for better ux" && diff -ay'
 alias nordvpn-update='sh <(curl -sSf https://downloads.nordcdn.com/apps/linux/install.sh)'
-alias windows_wsl_clock_out_of_sync='sudo hwclock -s'
 alias gstart='gco main && git pull'
+# had to install ntpdate tool for this, but it seems effective for now
+alias windows_wsl_clock_out_of_sync='sudo ntpdate time.windows.com'  # old way, not reliable fix 'sudo hwclock -s'
 

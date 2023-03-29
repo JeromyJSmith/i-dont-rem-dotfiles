@@ -1,10 +1,11 @@
 [user]
-	email = kpquinn2@wisc.edu
+	email = 8552248+I-Dont-Remember@users.noreply.github.com
 	name = Kevin Quinn
 [color]
 	ui = true
 [core]
 	editor = vim
+	autocrlf = false
 [branch]
     sort = -committerdate
 [alias]
