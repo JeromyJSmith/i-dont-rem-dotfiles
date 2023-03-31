@@ -44,8 +44,6 @@ export PATH="$FLYCTL_INSTALL/bin:$PATH"
 
 
 # Add any extra stuff that's only for WSL linux
-WSL_DISTRO_NAME
-
 if [ -z ${WSL_DISTRO_NAME+x} ]; then
   echo "non-wsl linux variant"
 else
