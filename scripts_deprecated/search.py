@@ -23,7 +23,7 @@ def open_tab(query):
 #
 # !Need string for search_engine and int for num_searches
 open_new_window()
-for i in range(num_searches):
+for _ in range(num_searches):
   time.sleep(2)
   open_tab(get_random_word())
 
